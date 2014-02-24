@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Ivan Rublev http://ivanrublev.me. All rights reserved.
 //
 
-#import "NSFileManager+VRDocumentDirectory.h"
+#import "NSFileManager+VRDocumentsDirectory.h"
 
 @implementation NSFileManager (VRDocumentsDirectory)
 

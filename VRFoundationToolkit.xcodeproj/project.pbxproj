@@ -15,7 +15,7 @@
 		AB3CA4BC18B768EA0079964E /* libVRFoundationToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA4A418B768EA0079964E /* libVRFoundationToolkit.a */; };
 		AB3CA4C218B768EA0079964E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA4C018B768EA0079964E /* InfoPlist.strings */; };
 		AB3CA4C418B768EA0079964E /* VRFoundationToolkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4C318B768EA0079964E /* VRFoundationToolkitTests.m */; };
-		AB3CA4E218B770470079964E /* NSFileManager+VRDocumentDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4E118B770470079964E /* NSFileManager+VRDocumentDirectory.m */; };
+		AB3CA4E218B770470079964E /* NSFileManager+VRDocumentsDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4E118B770470079964E /* NSFileManager+VRDocumentsDirectory.m */; };
 		AB3CA4EA18B775F00079964E /* NSDate+VRDurations.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4E918B775F00079964E /* NSDate+VRDurations.m */; };
 		AB3CA4EE18B776DE0079964E /* NSString+VRMd5.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4ED18B776DE0079964E /* NSString+VRMd5.m */; };
 		AB3CA4F218B77A7B0079964E /* NSObject+VRProtocolsConformation.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4F118B77A7B0079964E /* NSObject+VRProtocolsConformation.m */; };
@@ -25,7 +25,7 @@
 		AB3CA58B18B797AA0079964E /* NSArray+VRCheckMembers.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA55F18B785200079964E /* NSArray+VRCheckMembers.h */; };
 		AB3CA58C18B797AA0079964E /* NSString+VRMd5.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4EC18B776DE0079964E /* NSString+VRMd5.h */; };
 		AB3CA58D18B797AA0079964E /* NSDate+VRDurations.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4E818B775F00079964E /* NSDate+VRDurations.h */; };
-		AB3CA58E18B797AA0079964E /* NSFileManager+VRDocumentDirectory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4E018B770470079964E /* NSFileManager+VRDocumentDirectory.h */; };
+		AB3CA58E18B797AA0079964E /* NSFileManager+VRDocumentsDirectory.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4E018B770470079964E /* NSFileManager+VRDocumentsDirectory.h */; };
 		AB3CA58F18B797AA0079964E /* NSObject+VRProtocolsConformation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4F018B77A7B0079964E /* NSObject+VRProtocolsConformation.h */; };
 		AB3CA59018B797AA0079964E /* VRLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4CE18B76ACA0079964E /* VRLog.h */; };
 		AB3CA59118B797AA0079964E /* NSCoder+VRKeyName.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */; };
@@ -52,7 +52,7 @@
 				AB3CA58B18B797AA0079964E /* NSArray+VRCheckMembers.h in CopyFiles */,
 				AB3CA58C18B797AA0079964E /* NSString+VRMd5.h in CopyFiles */,
 				AB3CA58D18B797AA0079964E /* NSDate+VRDurations.h in CopyFiles */,
-				AB3CA58E18B797AA0079964E /* NSFileManager+VRDocumentDirectory.h in CopyFiles */,
+				AB3CA58E18B797AA0079964E /* NSFileManager+VRDocumentsDirectory.h in CopyFiles */,
 				AB3CA58F18B797AA0079964E /* NSObject+VRProtocolsConformation.h in CopyFiles */,
 				AB3CA59018B797AA0079964E /* VRLog.h in CopyFiles */,
 				AB3CA59118B797AA0079964E /* NSCoder+VRKeyName.h in CopyFiles */,
@@ -74,8 +74,8 @@
 		AB3CA4C118B768EA0079964E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		AB3CA4C318B768EA0079964E /* VRFoundationToolkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VRFoundationToolkitTests.m; sourceTree = "<group>"; };
 		AB3CA4CE18B76ACA0079964E /* VRLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRLog.h; sourceTree = "<group>"; };
-		AB3CA4E018B770470079964E /* NSFileManager+VRDocumentDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+VRDocumentDirectory.h"; sourceTree = "<group>"; };
-		AB3CA4E118B770470079964E /* NSFileManager+VRDocumentDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+VRDocumentDirectory.m"; sourceTree = "<group>"; };
+		AB3CA4E018B770470079964E /* NSFileManager+VRDocumentsDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+VRDocumentsDirectory.h"; sourceTree = "<group>"; };
+		AB3CA4E118B770470079964E /* NSFileManager+VRDocumentsDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+VRDocumentsDirectory.m"; sourceTree = "<group>"; };
 		AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSCoder+VRKeyName.h"; sourceTree = "<group>"; };
 		AB3CA4E818B775F00079964E /* NSDate+VRDurations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+VRDurations.h"; sourceTree = "<group>"; };
 		AB3CA4E918B775F00079964E /* NSDate+VRDurations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+VRDurations.m"; sourceTree = "<group>"; };
@@ -197,8 +197,8 @@
 		AB3CA4DF18B770270079964E /* NSFileManager+VRDocumentsDirectory */ = {
 			isa = PBXGroup;
 			children = (
-				AB3CA4E018B770470079964E /* NSFileManager+VRDocumentDirectory.h */,
-				AB3CA4E118B770470079964E /* NSFileManager+VRDocumentDirectory.m */,
+				AB3CA4E018B770470079964E /* NSFileManager+VRDocumentsDirectory.h */,
+				AB3CA4E118B770470079964E /* NSFileManager+VRDocumentsDirectory.m */,
 			);
 			name = "NSFileManager+VRDocumentsDirectory";
 			sourceTree = "<group>";
@@ -330,7 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB3CA58718B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m in Sources */,
-				AB3CA4E218B770470079964E /* NSFileManager+VRDocumentDirectory.m in Sources */,
+				AB3CA4E218B770470079964E /* NSFileManager+VRDocumentsDirectory.m in Sources */,
 				AB3CA4EE18B776DE0079964E /* NSString+VRMd5.m in Sources */,
 				AB3CA4EA18B775F00079964E /* NSDate+VRDurations.m in Sources */,
 				AB3CA56118B785200079964E /* NSArray+VRCheckMembers.m in Sources */,
