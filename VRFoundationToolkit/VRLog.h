@@ -13,6 +13,9 @@
 
 // Logging macros to use in projects.
 // Macros are mapped to KSLogger logging macros if they are defined. Or falls back to NSLog.
+#ifdef KSLOG_TRACE
+#define VRLOG_TRACE KSLOG_TRACE
+#endif
 #ifdef KSLOG_DEBUG
 #define VRLOG_DEBUG KSLOG_DEBUG
 #endif
@@ -26,6 +29,9 @@
 #define VRLOG_ALWAYS KSLOG_ALWAYS
 #endif
 
+#ifndef VRLOG_TRACE
+#define VRLOG_TRACE NSLog
+#endif
 #ifndef VRLOG_DEBUG
 #define VRLOG_DEBUG NSLog
 #endif

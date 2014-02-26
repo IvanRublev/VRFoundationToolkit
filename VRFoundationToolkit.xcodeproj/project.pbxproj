@@ -14,7 +14,6 @@
 		AB3CA4B918B768EA0079964E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA4B818B768EA0079964E /* UIKit.framework */; };
 		AB3CA4BC18B768EA0079964E /* libVRFoundationToolkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA4A418B768EA0079964E /* libVRFoundationToolkit.a */; };
 		AB3CA4C218B768EA0079964E /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = AB3CA4C018B768EA0079964E /* InfoPlist.strings */; };
-		AB3CA4C418B768EA0079964E /* VRFoundationToolkitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4C318B768EA0079964E /* VRFoundationToolkitTests.m */; };
 		AB3CA4E218B770470079964E /* NSFileManager+VRDocumentsDirectory.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4E118B770470079964E /* NSFileManager+VRDocumentsDirectory.m */; };
 		AB3CA4EA18B775F00079964E /* NSDate+VRDurations.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4E918B775F00079964E /* NSDate+VRDurations.m */; };
 		AB3CA4EE18B776DE0079964E /* NSString+VRMd5.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA4ED18B776DE0079964E /* NSString+VRMd5.m */; };
@@ -29,6 +28,10 @@
 		AB3CA58F18B797AA0079964E /* NSObject+VRProtocolsConformation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4F018B77A7B0079964E /* NSObject+VRProtocolsConformation.h */; };
 		AB3CA59018B797AA0079964E /* VRLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4CE18B76ACA0079964E /* VRLog.h */; };
 		AB3CA59118B797AA0079964E /* NSCoder+VRKeyName.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */; };
+		AB909D4F18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.m in Sources */ = {isa = PBXBuildFile; fileRef = AB909D4E18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.m */; };
+		AB909D5218BDCACE00EF2795 /* NSObject+VRPropertiesProcessingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB909D5118BDCACE00EF2795 /* NSObject+VRPropertiesProcessingTests.m */; };
+		AB909D5518BDCBF000EF2795 /* VRPPMySuperClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AB909D5418BDCBF000EF2795 /* VRPPMySuperClass.m */; };
+		AB909D5818BDCC1100EF2795 /* VRPPMyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AB909D5718BDCC1100EF2795 /* VRPPMyClass.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,7 +75,6 @@
 		AB3CA4B818B768EA0079964E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		AB3CA4BF18B768EA0079964E /* VRFoundationToolkitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "VRFoundationToolkitTests-Info.plist"; sourceTree = "<group>"; };
 		AB3CA4C118B768EA0079964E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		AB3CA4C318B768EA0079964E /* VRFoundationToolkitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VRFoundationToolkitTests.m; sourceTree = "<group>"; };
 		AB3CA4CE18B76ACA0079964E /* VRLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRLog.h; sourceTree = "<group>"; };
 		AB3CA4E018B770470079964E /* NSFileManager+VRDocumentsDirectory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+VRDocumentsDirectory.h"; sourceTree = "<group>"; };
 		AB3CA4E118B770470079964E /* NSFileManager+VRDocumentsDirectory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+VRDocumentsDirectory.m"; sourceTree = "<group>"; };
@@ -87,6 +89,13 @@
 		AB3CA56018B785200079964E /* NSArray+VRCheckMembers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+VRCheckMembers.m"; sourceTree = "<group>"; };
 		AB3CA58518B796A10079964E /* NSMutableDictionary+VRExchangeKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+VRExchangeKeys.h"; sourceTree = "<group>"; };
 		AB3CA58618B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+VRExchangeKeys.m"; sourceTree = "<group>"; };
+		AB909D4D18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+VRPropertiesProcessing.h"; sourceTree = "<group>"; };
+		AB909D4E18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VRPropertiesProcessing.m"; sourceTree = "<group>"; };
+		AB909D5118BDCACE00EF2795 /* NSObject+VRPropertiesProcessingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VRPropertiesProcessingTests.m"; sourceTree = "<group>"; };
+		AB909D5318BDCBF000EF2795 /* VRPPMySuperClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMySuperClass.h; sourceTree = "<group>"; };
+		AB909D5418BDCBF000EF2795 /* VRPPMySuperClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMySuperClass.m; sourceTree = "<group>"; };
+		AB909D5618BDCC1100EF2795 /* VRPPMyClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMyClass.h; sourceTree = "<group>"; };
+		AB909D5718BDCC1100EF2795 /* VRPPMyClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMyClass.m; sourceTree = "<group>"; };
 		ABC9BF2818B9A0F800C6566F /* VRSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRSingleton.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -163,7 +172,7 @@
 		AB3CA4BD18B768EA0079964E /* VRFoundationToolkitTests */ = {
 			isa = PBXGroup;
 			children = (
-				AB3CA4C318B768EA0079964E /* VRFoundationToolkitTests.m */,
+				AB909D5918BDCC6200EF2795 /* NSObject+VRPropertiesProcessingTests */,
 				AB3CA4BE18B768EA0079964E /* Supporting Files */,
 			);
 			path = VRFoundationToolkitTests;
@@ -187,6 +196,7 @@
 				AB3CA4EB18B7764A0079964E /* NSDate+VRDurations */,
 				AB3CA4DF18B770270079964E /* NSFileManager+VRDocumentsDirectory */,
 				AB3CA4F318B77A830079964E /* NSObject+VRProtocolsConformation */,
+				AB909D5018BDC88700EF2795 /* NSObject+VRPropertiesProcessing */,
 				AB3CA4CE18B76ACA0079964E /* VRLog.h */,
 				AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */,
 				ABC9BF2818B9A0F800C6566F /* VRSingleton.h */,
@@ -246,6 +256,27 @@
 				AB3CA58618B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m */,
 			);
 			name = "NSMutableDictionary+VRExchangeKeys";
+			sourceTree = "<group>";
+		};
+		AB909D5018BDC88700EF2795 /* NSObject+VRPropertiesProcessing */ = {
+			isa = PBXGroup;
+			children = (
+				AB909D4D18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.h */,
+				AB909D4E18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.m */,
+			);
+			name = "NSObject+VRPropertiesProcessing";
+			sourceTree = "<group>";
+		};
+		AB909D5918BDCC6200EF2795 /* NSObject+VRPropertiesProcessingTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB909D5118BDCACE00EF2795 /* NSObject+VRPropertiesProcessingTests.m */,
+				AB909D5318BDCBF000EF2795 /* VRPPMySuperClass.h */,
+				AB909D5418BDCBF000EF2795 /* VRPPMySuperClass.m */,
+				AB909D5618BDCC1100EF2795 /* VRPPMyClass.h */,
+				AB909D5718BDCC1100EF2795 /* VRPPMyClass.m */,
+			);
+			name = "NSObject+VRPropertiesProcessingTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -330,6 +361,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB3CA58718B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m in Sources */,
+				AB909D4F18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.m in Sources */,
 				AB3CA4E218B770470079964E /* NSFileManager+VRDocumentsDirectory.m in Sources */,
 				AB3CA4EE18B776DE0079964E /* NSString+VRMd5.m in Sources */,
 				AB3CA4EA18B775F00079964E /* NSDate+VRDurations.m in Sources */,
@@ -342,7 +374,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB3CA4C418B768EA0079964E /* VRFoundationToolkitTests.m in Sources */,
+				AB909D5518BDCBF000EF2795 /* VRPPMySuperClass.m in Sources */,
+				AB909D5818BDCC1100EF2795 /* VRPPMyClass.m in Sources */,
+				AB909D5218BDCACE00EF2795 /* NSObject+VRPropertiesProcessingTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,7 +516,12 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "VRFoundationToolkitTests/VRFoundationToolkitTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -499,7 +538,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "VRFoundationToolkit/VRFoundationToolkit-Prefix.pch";
 				INFOPLIST_FILE = "VRFoundationToolkitTests/VRFoundationToolkitTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
