@@ -46,9 +46,13 @@
 #endif
 
 // Macros for log error then assert with same message then return.
-#define VRLOG_ERROR_ASSERT_RETURN(FMT, ...) do { VRLOG_ERROR(FMT,  ##__VA_ARGS__); \
-                                            NSAssert(FALSE, FMT,  ##__VA_ARGS__); \
-                                            return; } while(0)
+#define VRLOG_ERROR_ASSERT_RETURN_VALUE(VALUE, FMT, ...) do { VRLOG_ERROR(FMT,  ##__VA_ARGS__); \
+NSAssert(FALSE, FMT,  ##__VA_ARGS__); \
+return VALUE; } while(0)
+
+#define VRLOG_ERROR_ASSERT_RETURN(FMT, ...) VRLOG_ERROR_ASSERT_RETURN_VALUE(, FMT,  ##__VA_ARGS__)
+#define VRLOG_ERROR_ASSERT_RETURN_NIL(FMT, ...) VRLOG_ERROR_ASSERT_RETURN_VALUE(nil, FMT,  ##__VA_ARGS__)
+
 // and custom assert with error logging
 #define VRASSERT(CONDITION, FMT, ...) if (CONDITION) VRLOG_ERROR_ASSERT_RETURN(FMT,  ##__VA_ARGS__)
 
