@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AB0A048718BF14ED00A377B4 /* VRLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0A048618BF14ED00A377B4 /* VRLogTests.m */; };
 		AB3CA4A818B768EA0079964E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA4A718B768EA0079964E /* Foundation.framework */; };
 		AB3CA4AD18B768EA0079964E /* VRFoundationToolkit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4AC18B768EA0079964E /* VRFoundationToolkit.h */; };
 		AB3CA4B618B768EA0079964E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA4B518B768EA0079964E /* XCTest.framework */; };
@@ -66,6 +67,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB0A048618BF14ED00A377B4 /* VRLogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRLogTests.m; sourceTree = "<group>"; };
 		AB3CA4A418B768EA0079964E /* libVRFoundationToolkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVRFoundationToolkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CA4A718B768EA0079964E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB3CA4AB18B768EA0079964E /* VRFoundationToolkit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VRFoundationToolkit-Prefix.pch"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 		AB3CA4BD18B768EA0079964E /* VRFoundationToolkitTests */ = {
 			isa = PBXGroup;
 			children = (
+				AB0A048618BF14ED00A377B4 /* VRLogTests.m */,
 				AB909D5918BDCC6200EF2795 /* NSObject+VRPropertiesProcessingTests */,
 				AB3CA4BE18B768EA0079964E /* Supporting Files */,
 			);
@@ -374,6 +377,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB0A048718BF14ED00A377B4 /* VRLogTests.m in Sources */,
 				AB909D5518BDCBF000EF2795 /* VRPPMySuperClass.m in Sources */,
 				AB909D5818BDCC1100EF2795 /* VRPPMyClass.m in Sources */,
 				AB909D5218BDCACE00EF2795 /* NSObject+VRPropertiesProcessingTests.m in Sources */,
