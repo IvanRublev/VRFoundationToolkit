@@ -8,7 +8,15 @@
 
 #import <Foundation/Foundation.h>
 
-#define VRPerformSelectorUnderProtocolIfPossible(aObject, aSelector, aProtocol) (if([aObject canPerformSelector:aSelector underProtocol:aProtocol]) [aObject aSelector])
+/* This category of the NSObject allows one to prevent "message no implemented" crashes when working with delegates.
+ * It allows to make check if method IS implemented by delegate before sending message to it.
+ *
+ * The restriction is that instead of usuall @property(nonatomic, assign) id<SomeProtocol> delegate;
+ * you must use @property(nonatomic, assign) NSObject<SomeProtocol> * delegate;
+ * This disables usage of NSProxy instance as delegate but improves stability.
+ */
+
+#define VRPerformSelectorUnderProtocolIfPossible(aObject, aSelector, aProtocol) do { if([aObject canPerformSelector:aSelector underProtocol:aProtocol]) [aObject performSelector:aSelector]; } while(0)
 
 @interface NSObject (VRProtocolsConformation)
 + (BOOL)instancesCanPerformSelector:(SEL)aSelector underProtocol:(Protocol *)aProtocol;
