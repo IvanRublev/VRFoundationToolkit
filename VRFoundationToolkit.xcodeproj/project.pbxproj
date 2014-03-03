@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		AB0A048718BF14ED00A377B4 /* VRLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0A048618BF14ED00A377B4 /* VRLogTests.m */; };
 		AB0A049B18BF4AD400A377B4 /* VRProtocolConformationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB0A049A18BF4AD400A377B4 /* VRProtocolConformationTests.m */; };
+		AB10F5B718C4B1A50008A076 /* NSBundle+VRDisplayName.m in Sources */ = {isa = PBXBuildFile; fileRef = AB10F5B618C4B1A50008A076 /* NSBundle+VRDisplayName.m */; };
 		AB3CA4A818B768EA0079964E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA4A718B768EA0079964E /* Foundation.framework */; };
 		AB3CA4AD18B768EA0079964E /* VRFoundationToolkit.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4AC18B768EA0079964E /* VRFoundationToolkit.h */; };
 		AB3CA4B618B768EA0079964E /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AB3CA4B518B768EA0079964E /* XCTest.framework */; };
@@ -70,6 +71,8 @@
 /* Begin PBXFileReference section */
 		AB0A048618BF14ED00A377B4 /* VRLogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRLogTests.m; sourceTree = "<group>"; };
 		AB0A049A18BF4AD400A377B4 /* VRProtocolConformationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRProtocolConformationTests.m; sourceTree = "<group>"; };
+		AB10F5B518C4B1A50008A076 /* NSBundle+VRDisplayName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+VRDisplayName.h"; sourceTree = "<group>"; };
+		AB10F5B618C4B1A50008A076 /* NSBundle+VRDisplayName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+VRDisplayName.m"; sourceTree = "<group>"; };
 		AB3CA4A418B768EA0079964E /* libVRFoundationToolkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVRFoundationToolkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CA4A718B768EA0079964E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		AB3CA4AB18B768EA0079964E /* VRFoundationToolkit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VRFoundationToolkit-Prefix.pch"; sourceTree = "<group>"; };
@@ -126,6 +129,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AB10F5B118C4B1000008A076 /* VRDisplayName */ = {
+			isa = PBXGroup;
+			children = (
+				AB10F5B518C4B1A50008A076 /* NSBundle+VRDisplayName.h */,
+				AB10F5B618C4B1A50008A076 /* NSBundle+VRDisplayName.m */,
+			);
+			name = VRDisplayName;
+			sourceTree = "<group>";
+		};
 		AB3CA49B18B768EA0079964E = {
 			isa = PBXGroup;
 			children = (
@@ -203,6 +215,7 @@
 				AB3CA4DF18B770270079964E /* NSFileManager+VRDocumentsDirectory */,
 				AB3CA4F318B77A830079964E /* VRProtocolConformation */,
 				AB909D5018BDC88700EF2795 /* NSObject+VRPropertiesProcessing */,
+				AB10F5B118C4B1000008A076 /* VRDisplayName */,
 				AB3CA4CE18B76ACA0079964E /* VRLog.h */,
 				AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */,
 				ABC9BF2818B9A0F800C6566F /* VRSingleton.h */,
@@ -366,6 +379,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB10F5B718C4B1A50008A076 /* NSBundle+VRDisplayName.m in Sources */,
 				AB3CA58718B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m in Sources */,
 				AB909D4F18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.m in Sources */,
 				AB3CA4E218B770470079964E /* NSFileManager+VRDocumentsDirectory.m in Sources */,
