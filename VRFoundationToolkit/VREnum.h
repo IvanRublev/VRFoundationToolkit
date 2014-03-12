@@ -22,14 +22,21 @@
  * Arbitrary number assignments to constants is not supported. Preprocessor doesn't support regexps (((
  *
  * TODO: Implement VRENUM_TYPEDEF_STARTVAL_AND_UTILS(tdeName, intType, startValueForConst1, const1, const2, ...)
+ *
+ *
+ * VRENUM_TYPEDEF(tdeName, intType, ...) same macro but without utility functions.
  */
+
 #define __VRENUM_CHECK(IDX, CONTEXT, VALUE) (CONTEXT == VALUE)
 #define __VRENUM_RETURN_VALUE_AS_STRING_IF_MATCHES_CONTEXT(IDX, CONTEXT, VALUE) if (CONTEXT == VALUE) return @#VALUE;
 
-#define VRENUM_TYPEDEF_AND_UTILS(tdeName, intType, ...) \
+#define VRENUM_TYPEDEF(tdeName, intType, ...) \
 typedef NS_ENUM(intType, tdeName) {\
 metamacro_expand_(__VA_ARGS__) \
 }; \
+
+#define VRENUM_TYPEDEF_AND_UTILS(tdeName, intType, ...) \
+VRENUM_TYPEDEF(tdeName, intType, __VA_ARGS__) \
 NS_INLINE BOOL isValid##tdeName (intType value) { \
 return metamacro_foreach_cxt(__VRENUM_CHECK, ||, value, __VA_ARGS__); \
 }; \

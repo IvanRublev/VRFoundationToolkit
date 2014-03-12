@@ -31,3 +31,4 @@
 #import "NSArray+VRCheckMembers.h"
 #import "NSMutableDictionary+VRExchangeKeys.h"
 #import "NSBundle+VRDisplayName.h"
+#import "VRURLConnectionChecker.h"

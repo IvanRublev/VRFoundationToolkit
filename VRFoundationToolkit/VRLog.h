@@ -61,6 +61,9 @@ LASTINSTRUCTION; } while(0)
 #define VRASSERT(CONDITION) NSAssert(CONDITION, @#CONDITION@" is false")
 
 // Some Design By Contract goodies
+/** VRPRECONDITIONS_LOG_ERROR_ASSERT_RETURN(condition1, condition2, ...) checks if all conditions are met, otherwithe logs, asserts and returns according to macro name.
+    Others the same.
+ */
 #define __VRROUNDBRACKETSARGUMENT(IDX, ARGUMENT) (ARGUMENT)
 #define __VRSTRINGIFY_FALSE_ARGUMENT_VIA_PRECOND(IDX, ARGUMENT) !(ARGUMENT) ? @"#"@metamacro_stringify(IDX)@" => ("@metamacro_stringify(ARGUMENT)@")"
 
