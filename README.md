@@ -1,15 +1,15 @@
 VRFoundationToolkit
 ===================
 
-This library contains custom classes, categories for extending [NSFoundation](https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/) and useful macros. It can be used in iOS or OS X projects for faster coding. Also this library is a base layer for several classes written by [@IvanRublev](https://github.com/IvanRublev?tab=repositories).
+This library contains custom classes, categories for extending [NSFoundation](https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/) and useful macros. It can be used in iOS or OS X projects for faster coding. Also this library is a base layer for several classes written by [IvanRublev](https://github.com/IvanRublev?tab=repositories).
 
 Supply
 ------
 
-This repository already includes [libextobjc](libextobjc) (via subtree) as requirement for some of macros from `VRLog.h` and `VREnum.h` that are build on top. So when you clone this repo you're got libextobjc also.
-That's gives all benefits of libextobjc like `@weakify`, `@strongify` directives to use with variables over blocks and many, many more. See [description](libextobjc) of that repo.  
+This repository already includes [libextobjc][1] (via subtree) as requirement for some of macros from `VRLog.h` and `VREnum.h` that are build on top. So when you clone this repo you're got libextobjc also.
+That's gives all benefits of libextobjc like `@weakify`, `@strongify` directives to use with variables over blocks and many, many more. See [description][1] of that repo.  
 
-Thanks a lot to [@jspahrsummers](https://github.com/jspahrsummers) and all contributors for such perfect [libextobjc](libextobjc) library.
+Thanks a lot [@jspahrsummers](https://github.com/jspahrsummers) and all contributors for such perfect [libextobjc][1] library.
 
 Installation
 ------------
@@ -190,4 +190,4 @@ License
 
 MIT. Copyright (c) 2013 Ivan Rublev, ivan@ivanrublev.me 
 
-[libexcobjc]:https://github.com/jspahrsummers/libextobjc.git
+[1]: https://github.com/jspahrsummers/libextobjc.git
