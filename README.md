@@ -19,10 +19,11 @@ Installation
 git subtree add --prefix=Requirements/VRFoundationToolkit --squash https://github.com/IvanRublev/VRFoundationToolkit.git master
 ```
 
+- Drag & drop `VRFoundationToolkit.xcodeproj` in to your poject.
 - Add `-ObjC` to Other Linker Flags in project's Build Settings. And add `"./Requirements/**"` to Header Search Paths.
 - Add `VRFoundationToolkit` target (or `VRFoundationToolkitOSX` for OS X) in "Target Dependencies" section of "Build phases" tab of your project's target.
 - Link to `libVRFoundationToolkit.a` (or `libVRFoundationToolkitOSX.a` for OS X) in General tab of your project's target.
-- Add `#import VRFoundationToolkit.h` to YourProject-Prefix.pch. 
+- Add `#import "VRFoundationToolkit.h"` to YourProject-Prefix.pch. 
 
 Now it's ready to use!
 
