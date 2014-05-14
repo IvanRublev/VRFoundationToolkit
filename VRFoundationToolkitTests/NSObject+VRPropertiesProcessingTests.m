@@ -10,6 +10,7 @@
 #import "VRPPMyClass.h"
 #import "VRPPMyClassWithStructProperty.h"
 #import "NSObject+VRPropertiesProcessing.h"
+#import "VRPPMyClassConditionalProperties.h"
 
 @interface NSObject_VRPropertiesProcessingTests : XCTestCase {
     VRPPMyClass * obj1, * obj2, * obj3;
@@ -181,6 +182,37 @@ XCTAssertTrue(tr, @"Value %@ does not matches pattern %@!", str, pattern);} whil
     XCTAssertTrue(tr, @"unarchived object must have same values.");
 }
 
+- (void)testEncodePropertiesWithCoderAndInitPropertiesWithCoderConditionalAndSkipNames
+{
+    VRPPMyClassConditionalProperties * myObject = [VRPPMyClassConditionalProperties new];
+    myObject.value = 1234;
+    myObject.title = @"Hello";
+    myObject.conditionalTitle = @"This should be archived separetely.";
+    myObject.skippyTitle = @"That will not survive.";
+    myObject.constInvisible = @"This also.";
 
+    NSLog(@"==== Test fast implementing of NSCoding, see realisation of protocol in VRPPMyClass ====");
+    NSLog(@"myObject:      %@", [myObject descriptionWithProperties]);
+    
+    VRPPMyClassConditionalProperties * unarchivedObj = nil;
+#define requiredPropsAreEqual ((myObject.value == unarchivedObj.value) && ([myObject.title isEqualToString: unarchivedObj.title]))
+
+    myObject.constArchiveConditionalTitle = NO;
+    unarchivedObj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:myObject]];
+    NSLog(@"constArchiveConditionalTitle: %d", myObject.constArchiveConditionalTitle);
+    NSLog(@"unarchivedObj: %@", [unarchivedObj descriptionWithProperties]);
+    XCTAssertTrue(requiredPropsAreEqual, @"unarchived object must have same required values.");
+    XCTAssertNil(unarchivedObj.conditionalTitle, @"conditionalTitle must be empty after unarchive.");
+
+    myObject.constArchiveConditionalTitle = YES;
+    unarchivedObj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:myObject]];
+    NSLog(@"constArchiveConditionalTitle: %d", myObject.constArchiveConditionalTitle);
+    NSLog(@"unarchivedObj: %@", [unarchivedObj descriptionWithProperties]);
+    XCTAssertTrue(requiredPropsAreEqual, @"unarchived object must have same required values.");
+    XCTAssertNotNil(unarchivedObj.conditionalTitle, @"conditionalTitle must NOT be empty after unarchive.");
+    
+    NSLog(@"====");
+   
+}
 
 @end

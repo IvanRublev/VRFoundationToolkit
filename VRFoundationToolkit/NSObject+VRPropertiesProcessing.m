@@ -169,14 +169,29 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 
 - (void)encodePropertiesWithCoder:(NSCoder *)aCoder
 {
-    [self encodePropertiesWithCoder:aCoder encodeStructuresProperties:nil];
+    [self encodePropertiesWithCoder:aCoder conditionally:nil skip:nil encodeStructuresProperties:nil];
 }
 
-- (void)encodePropertiesWithCoder:(NSCoder *)aCoder encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock
+- (void)encodePropertiesWithCoder:(NSCoder *)aCoder conditionally:(NSSet *)namesOfPropertiesForConditionalEncoding skip:(NSSet *)namesOfPropertiesToSkip
+{
+    [self encodePropertiesWithCoder:aCoder conditionally:namesOfPropertiesForConditionalEncoding skip:namesOfPropertiesToSkip encodeStructuresProperties:nil];
+}
+
+- (void)encodePropertiesWithCoder:(NSCoder *)aCoder
+       encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock
+{
+    [self encodePropertiesWithCoder:aCoder conditionally:nil skip:nil encodeStructuresProperties:encodeStructuresBlock];
+}
+
+- (void)encodePropertiesWithCoder:(NSCoder *)aCoder
+                    conditionally:(NSSet *)namesOfPropertiesForConditionalEncoding
+                             skip:(NSSet *)namesOfPropertiesToSkip
+       encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock
 {
     NSMutableArray * structurePropertiesNames = [NSMutableArray array];
     [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
-        if (propertyValue != nil) {
+        BOOL skip = [namesOfPropertiesToSkip containsObject:propertyName];
+        if (propertyValue != nil && !skip) {
             __block BOOL propertySupportsNSCoding = YES;
             if ([valuesClass isSubclassOfClass:[NSArray class]]) {
                 [((NSArray *)propertyValue) enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
@@ -205,8 +220,13 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
             }
             BOOL isStructureInValue = isStructInValue(propertyValue);
             if (propertySupportsNSCoding && !isStructureInValue) {
+                BOOL encodeConditionally = [namesOfPropertiesForConditionalEncoding containsObject:propertyName];
                 @try {
-                    [aCoder encodeObject:propertyValue forKey:[self keyForPropertyName:propertyName]];
+                    if (encodeConditionally) {
+                        [aCoder encodeConditionalObject:propertyValue forKey:[self keyForPropertyName:propertyName]];
+                    } else {
+                        [aCoder encodeObject:propertyValue forKey:[self keyForPropertyName:propertyName]];
+                    }
                 }
                 @catch (NSException *exception) {
                     VREPLOG_ERROR(@"Exeption on coding property .%@. %@: %@.", propertyName, exception.name, exception.reason);

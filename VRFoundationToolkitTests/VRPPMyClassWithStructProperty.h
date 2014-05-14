@@ -13,7 +13,7 @@ typedef struct sMyStruct {
     double b;
 } MyStruct;
 
-@interface VRPPMyClassWithStructProperty : NSObject
+@interface VRPPMyClassWithStructProperty : NSObject <NSCoding>
 @property (nonatomic, readwrite) NSString * title;
 @property (nonatomic, assign) MyStruct structure;
 @end
