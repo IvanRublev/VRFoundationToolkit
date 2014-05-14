@@ -179,6 +179,10 @@ XCTAssertTrue(tr, @"Value %@ does not matches pattern %@!", str, pattern);} whil
     NSLog(@"unarchivedObj: %@", [unarchivedObj descriptionWithProperties]);
     NSLog(@"====");
     
+    @autoreleasepool {
+        objWithStructProperty = nil;
+    }
+    
     XCTAssertTrue(tr, @"unarchived object must have same values.");
 }
 

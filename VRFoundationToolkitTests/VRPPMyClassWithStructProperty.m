@@ -14,8 +14,8 @@
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
     [self encodePropertiesWithCoder:aCoder encodeStructuresProperties:^(NSCoder *aCoder, NSArray *structurePropertiesNames) {
-        [aCoder encodeInteger:self.structure.a forKey:@"the a"];
-        [aCoder encodeDouble:self.structure.b forKey:@"the b"];
+        [aCoder encodeInteger:_structure.a forKey:@"the a"];
+        [aCoder encodeDouble:_structure.b forKey:@"the b"];
     }];
 }
 
@@ -28,7 +28,7 @@
                 [aDecoder decodeIntegerForKey:@"the a"],
                 [aDecoder decodeDoubleForKey:@"the b"]
             };
-            self.structure = theStruct;
+            _structure = theStruct;
         }];
     }
     return self;
