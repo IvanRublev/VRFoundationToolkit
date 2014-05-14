@@ -20,6 +20,7 @@
 // Routines
 #import "VRLog.h"
 #import "VREnum.h"
+#import "VRTypeOf.h"
 #import "NSCoder+VRKeyName.h"
 #import "VRSingleton.h"
 #import "VRProtocolConformation.h"

@@ -43,6 +43,8 @@
 		AB3CA58F18B797AA0079964E /* VRProtocolConformation.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4F018B77A7B0079964E /* VRProtocolConformation.h */; };
 		AB3CA59018B797AA0079964E /* VRLog.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4CE18B76ACA0079964E /* VRLog.h */; };
 		AB3CA59118B797AA0079964E /* NSCoder+VRKeyName.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */; };
+		AB3DC123192369550067DFD3 /* VRPPMyClassWithStructProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3DC122192369550067DFD3 /* VRPPMyClassWithStructProperty.m */; };
+		AB3DC126192384FE0067DFD3 /* VRTypeOfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3DC125192384FE0067DFD3 /* VRTypeOfTests.m */; };
 		AB907B9F18DA137100223363 /* EXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = AB352DC818CBF46F00F6C8B6 /* EXTScope.m */; };
 		AB907BA018DA138400223363 /* VRURLConnectionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = AB03521D18D07889006C69D0 /* VRURLConnectionChecker.m */; };
 		AB907BA118DA138400223363 /* NSMutableDictionary+VRExchangeKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA58618B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m */; };
@@ -147,6 +149,10 @@
 		AB3CA56018B785200079964E /* NSArray+VRCheckMembers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+VRCheckMembers.m"; sourceTree = "<group>"; };
 		AB3CA58518B796A10079964E /* NSMutableDictionary+VRExchangeKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+VRExchangeKeys.h"; sourceTree = "<group>"; };
 		AB3CA58618B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+VRExchangeKeys.m"; sourceTree = "<group>"; };
+		AB3DC121192369550067DFD3 /* VRPPMyClassWithStructProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMyClassWithStructProperty.h; sourceTree = "<group>"; };
+		AB3DC122192369550067DFD3 /* VRPPMyClassWithStructProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMyClassWithStructProperty.m; sourceTree = "<group>"; };
+		AB3DC1241923841E0067DFD3 /* VRTypeOf.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRTypeOf.h; sourceTree = "<group>"; };
+		AB3DC125192384FE0067DFD3 /* VRTypeOfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRTypeOfTests.m; sourceTree = "<group>"; };
 		AB907B7418DA09D300223363 /* libVRFoundationToolkitOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVRFoundationToolkitOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB907B7518DA09D300223363 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		AB907B7818DA09D300223363 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -314,6 +320,7 @@
 			children = (
 				AB0A048618BF14ED00A377B4 /* VRLogTests.m */,
 				AB352E1C18CCDBDD00F6C8B6 /* VREnumTests.m */,
+				AB3DC125192384FE0067DFD3 /* VRTypeOfTests.m */,
 				AB0A049A18BF4AD400A377B4 /* VRProtocolConformationTests.m */,
 				AB909D5918BDCC6200EF2795 /* NSObject+VRPropertiesProcessingTests */,
 				AB3CA4BE18B768EA0079964E /* Supporting Files */,
@@ -344,6 +351,7 @@
 				AB10F5B118C4B1000008A076 /* NSBundle+VRDisplayName */,
 				AB3CA4CE18B76ACA0079964E /* VRLog.h */,
 				AB352E1818CCDA6500F6C8B6 /* VREnum.h */,
+				AB3DC1241923841E0067DFD3 /* VRTypeOf.h */,
 				AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */,
 				ABC9BF2818B9A0F800C6566F /* VRSingleton.h */,
 			);
@@ -431,6 +439,8 @@
 				AB909D5418BDCBF000EF2795 /* VRPPMySuperClass.m */,
 				AB909D5618BDCC1100EF2795 /* VRPPMyClass.h */,
 				AB909D5718BDCC1100EF2795 /* VRPPMyClass.m */,
+				AB3DC121192369550067DFD3 /* VRPPMyClassWithStructProperty.h */,
+				AB3DC122192369550067DFD3 /* VRPPMyClassWithStructProperty.m */,
 			);
 			name = "NSObject+VRPropertiesProcessingTests";
 			sourceTree = "<group>";
@@ -565,9 +575,11 @@
 				AB0A048718BF14ED00A377B4 /* VRLogTests.m in Sources */,
 				AB352DF218CBF46F00F6C8B6 /* EXTADT.m in Sources */,
 				AB909D5518BDCBF000EF2795 /* VRPPMySuperClass.m in Sources */,
+				AB3DC123192369550067DFD3 /* VRPPMyClassWithStructProperty.m in Sources */,
 				AB352DF618CBF46F00F6C8B6 /* EXTSafeCategory.m in Sources */,
 				AB352DF918CBF46F00F6C8B6 /* NSInvocation+EXT.m in Sources */,
 				AB352E1D18CCDBDD00F6C8B6 /* VREnumTests.m in Sources */,
+				AB3DC126192384FE0067DFD3 /* VRTypeOfTests.m in Sources */,
 				AB352DF518CBF46F00F6C8B6 /* EXTRuntimeExtensions.m in Sources */,
 				AB0A049B18BF4AD400A377B4 /* VRProtocolConformationTests.m in Sources */,
 				AB909D5818BDCC1100EF2795 /* VRPPMyClass.m in Sources */,
@@ -866,6 +878,7 @@
 				AB907B9518DA09D300223363 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

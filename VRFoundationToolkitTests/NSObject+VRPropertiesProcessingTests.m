@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "VRPPMyClass.h"
+#import "VRPPMyClassWithStructProperty.h"
 #import "NSObject+VRPropertiesProcessing.h"
 
 @interface NSObject_VRPropertiesProcessingTests : XCTestCase {
@@ -157,6 +158,29 @@ XCTAssertTrue(tr, @"Value %@ does not matches pattern %@!", str, pattern);} whil
     
     XCTAssertTrue(tr, @"unarchived object must have same values.");
 }
+
+- (void)testEncodePropertiesWithCoderEncodeStructuresAndInitPropertiesWithCoderDecodeStructures
+{
+    VRPPMyClassWithStructProperty * objWithStructProperty = [VRPPMyClassWithStructProperty new];
+    NSString * title = @"The title";
+    MyStruct filledStruct = {12, 0.4556989};
+    objWithStructProperty.structure = filledStruct;
+    objWithStructProperty.title = [NSString stringWithString:title];
+    
+    VRPPMyClassWithStructProperty * unarchivedObj = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:objWithStructProperty]];
+    BOOL tr =
+    (objWithStructProperty.structure.a == unarchivedObj.structure.a) &&
+    (objWithStructProperty.structure.b == unarchivedObj.structure.b) &&
+    [objWithStructProperty.title isEqualToString:unarchivedObj.title];
+    
+    NSLog(@"==== Test fast implementing of NSCoding, see realisation of protocol in VRPPMyClass ====");
+    NSLog(@"objWithStructProperty:          %@", [objWithStructProperty descriptionWithProperties]);
+    NSLog(@"unarchivedObj: %@", [unarchivedObj descriptionWithProperties]);
+    NSLog(@"====");
+    
+    XCTAssertTrue(tr, @"unarchived object must have same values.");
+}
+
 
 
 @end

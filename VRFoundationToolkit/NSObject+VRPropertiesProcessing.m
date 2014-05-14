@@ -7,6 +7,7 @@
 
 #import "NSObject+VRPropertiesProcessing.h"
 #import "VRProtocolConformation.h"
+#import "VRLog.h"
 #import <objc/runtime.h>
 
 #define VREPLogLevel 0 // 0 - no console log, 1 - errors, 2 - trace
@@ -26,6 +27,8 @@
 #ifndef VREPLOG_ERROR
 #define VREPLOG_ERROR(FMT, ...)
 #endif
+
+FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 
 #define kNSObjectVRPropertiesProcessingIgnorePrefix @"const"
 @implementation NSObject (VRPropertiesProcessing)
@@ -90,7 +93,8 @@
             equal = ([object valueForKey:propertyName] == nil);
         } else {
             BOOL propertyValueSupportsCompare = VRCanPerform(propertyValue, @selector(isEqual:), @protocol(NSObject));
-            if (propertyValueSupportsCompare) {
+            BOOL propertyValueIsStructure = isStructInValue(propertyValue);
+            if (propertyValueSupportsCompare && !propertyValueIsStructure) {
 #ifdef DEBUG
                 // Check if [-isEqual] compares values by address.
                 id propertyValueDeepCopy = deepCopyOfObj(propertyValue);
@@ -107,7 +111,13 @@
                 }
 #endif
             } else {
-                VREPLOG_ERROR(@"Value of property .%@ not supporting [-isEqual:]. So instances of class (%@) can't be compared!", propertyName, NSStringFromClass([self class]));
+                if (propertyValueIsStructure) {
+#ifndef VRPREVENT_STRUCT_NOT_COMPARED_ERROR_LOG
+                    VRLOG_ERROR(@"Property \"%@\" is of structure type! So instances of class (%@) can't be compared automatically!", propertyName, NSStringFromClass([self class]));
+#endif
+                } else {
+                    VREPLOG_ERROR(@"Value of property .%@ not supporting [-isEqual:]. So instances of class (%@) can't be compared!", propertyName, NSStringFromClass([self class]));
+                }
                 equal = NO;
             }
         }
@@ -159,6 +169,12 @@
 
 - (void)encodePropertiesWithCoder:(NSCoder *)aCoder
 {
+    [self encodePropertiesWithCoder:aCoder encodeStructuresProperties:nil];
+}
+
+- (void)encodePropertiesWithCoder:(NSCoder *)aCoder encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock
+{
+    NSMutableArray * structurePropertiesNames = [NSMutableArray array];
     [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
         if (propertyValue != nil) {
             __block BOOL propertySupportsNSCoding = YES;
@@ -187,7 +203,8 @@
             } else {
                 propertySupportsNSCoding = [propertyValue conformsToProtocol:@protocol(NSCoding)];
             }
-            if (propertySupportsNSCoding) {
+            BOOL isStructureInValue = isStructInValue(propertyValue);
+            if (propertySupportsNSCoding && !isStructureInValue) {
                 @try {
                     [aCoder encodeObject:propertyValue forKey:[self keyForPropertyName:propertyName]];
                 }
@@ -196,22 +213,43 @@
                 }
                 VREPLOG_TRACE(@"Encoded [%@]%@: %@", valuesClass, propertyName, propertyValue);
             } else {
+                if (isStructureInValue) {
+                    [structurePropertiesNames addObject:propertyName];
+                } else {
 #ifdef DEBUG
-                VREPLOG_ERROR(@"Property %@ of class %@ is not saved! It or its members doesn't support NSCoding protocol!", propertyName, NSStringFromClass(valuesClass));
+                VREPLOG_ERROR(@"Property %@ of class %@ is not encoded! It or its members doesn't support NSCoding protocol!", propertyName, NSStringFromClass(valuesClass));
 #endif
+                }
             }
         } else {
             VREPLOG_TRACE(@"Value of .%@ is nil, not encoded.", propertyName);
         }
     }];
+    if ([structurePropertiesNames count]) {
+        if (encodeStructuresBlock) {
+            encodeStructuresBlock(aCoder, structurePropertiesNames);
+        } else {
+#ifndef VRPREVENT_STRUCT_NOT_ENCODED_ERROR_LOG
+            VRLOG_ERROR(@"Following properties are of structure types & were not encoded: %@ Please, use -encodePropertiesWithCoder:encodeStructuresProperties: with block set or define VRPREVENT_STRUCT_NOT_ENCODED_ERROR_LOG", structurePropertiesNames);
+#endif
+        }
+    }
 }
 
 - (id)initPropertiesWithCoder:(NSCoder *)aDecoder
 {
+    return [self initPropertiesWithCoder:aDecoder decodeStructuresProperties:nil];
+}
+
+- (id)initPropertiesWithCoder:(NSCoder *)aDecoder decodeStructuresProperties:(void (^)(NSCoder * aDecoder, NSArray * structurePropertiesNames))decodeStructuresBlock
+{
+    NSMutableArray * structurePropertiesNames = [NSMutableArray array];
     if (self) {
         [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
             if (propertyName != nil) {
-                if ([aDecoder containsValueForKey:[self keyForPropertyName:propertyName]]) {
+                if (isStructInValue(propertyValue)) {
+                    [structurePropertiesNames addObject:propertyName];
+                } else if ([aDecoder containsValueForKey:[self keyForPropertyName:propertyName]]) {
                     VREPLOG_TRACE(@"Decoding [%@]%@", valuesClass, propertyName);
                     id value = nil;
                     @try {
@@ -237,6 +275,15 @@
                 VREPLOG_ERROR(@"Can't decode value for nil property name!");
             }
         }];
+    }
+    if ([structurePropertiesNames count]) {
+        if (decodeStructuresBlock) {
+            decodeStructuresBlock(aDecoder, structurePropertiesNames);
+        } else {
+#ifndef VRPREVENT_STRUCT_NOT_DECODED_ERROR_LOG
+            VRLOG_ERROR(@"Following properties are of structure types & were not decoded: %@ Please, use -initPropertiesWithCoder:decodeStructuresProperties: with block set or define VRPREVENT_STRUCT_NOT_DECODED_ERROR_LOG", structurePropertiesNames);
+#endif
+        }
     }
     return self;
 }
@@ -306,6 +353,15 @@
 
 #pragma mark -
 #pragma mark Helpers
+FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value)
+{
+    if ([value isKindOfClass:[NSValue class]]) {
+        const char * objCType = [value objCType];
+        return objCType[0] == '{';
+    }
+    return NO;
+}
+
 FOUNDATION_STATIC_INLINE id deepCopyOfObj(id value)
 {
     if (!value) {

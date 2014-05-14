@@ -26,7 +26,6 @@
  */
 
 @interface NSObject (VRPropertiesProcessing)
-
 - (void)enumeratePropertiesUsingBlock:(void (^)(NSString * propertyName, id propertyValue, __unsafe_unretained Class valuesClass))block;
 
 - (NSString *)descriptionWithProperties;
@@ -40,6 +39,7 @@
 
 - (NSString *)keyForPropertyName:(NSString *)propertyName;
 - (void)encodePropertiesWithCoder:(NSCoder *)aCoder; // For fast implementing of NSCoding protocol in subclass of NSObject.
+- (void)encodePropertiesWithCoder:(NSCoder *)aCoder encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock; // Allows to encode structures manually in block. structurePropertiesNames are provided to debug purposes.
 - (id)initPropertiesWithCoder:(NSCoder *)aDecoder;
-
+- (id)initPropertiesWithCoder:(NSCoder *)aDecoder decodeStructuresProperties:(void (^)(NSCoder * aDecoder, NSArray * structurePropertiesNames))decodeStructuresBlock; // Allows to decode structures in block and set them to theSelf.
 @end
