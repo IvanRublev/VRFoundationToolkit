@@ -32,7 +32,7 @@
 #define VRLOG_ALWAYS KSLOG_ALWAYS
 #endif
 
-#define iVRLOG(FMT, ...) NSLog(@"%s:%d %s "FMT, strrchr(__FILE__, '/') == 0 ? __FILE__ : strrchr(__FILE__, '/')+1, __LINE__, __PRETTY_FUNCTION__, ##__VA_ARGS__)
+#define iVRLOG(FMT, ...) NSLog([@"%s:%d %s " stringByAppendingString:FMT], strrchr(__FILE__, '/') == 0 ? __FILE__ : strrchr(__FILE__, '/')+1, __LINE__, __PRETTY_FUNCTION__, ##__VA_ARGS__)
 #ifndef VRLOG_TRACE
 #define VRLOG_TRACE iVRLOG
 #endif
