@@ -29,10 +29,23 @@
 {
     NSDate * date1 = self;
     NSDate * date2 = nextDate;
-    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSCalendar *calendar = [[self class] defaultCalendar];
     return [calendar components:units
                        fromDate:date1
                          toDate:date2 options:0];
+}
+
+- (NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units
+{
+    NSDate * date1 = self;
+    NSCalendar *calendar = [[self class] defaultCalendar];
+    return [calendar components:units
+                       fromDate:date1];
+}
+
++ (NSCalendar *)defaultCalendar
+{
+    return [NSCalendar currentCalendar];
 }
 
 @end
