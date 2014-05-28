@@ -33,3 +33,4 @@
 #import "NSMutableDictionary+VRExchangeKeys.h"
 #import "NSBundle+VRDisplayName.h"
 #import "VRURLConnectionChecker.h"
+#import "NSTimer+VRWithBlock.h"
