@@ -60,7 +60,7 @@ LASTINSTRUCTION; } while(0)
 
 // Custom assertion with only one argument for checking condition
 #define VRASSERT(CONDITION) NSAssert(CONDITION, @#CONDITION@" is false")
-
+#define VRASSERT_LOG_ERROR(CONDITION, FMT, ...) if (!CONDITION) { VRLOG_ERROR_ASSERT(FMT, ##__VA_ARGS__); }
 // Some Design By Contract goodies
 /** VRPRECONDITIONS_LOG_ERROR_ASSERT_RETURN(condition1, condition2, ...) checks if all conditions are met, otherwithe logs, asserts and returns according to macro name.
     Others the same.
