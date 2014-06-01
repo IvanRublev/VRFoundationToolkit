@@ -43,6 +43,11 @@
                        fromDate:date1];
 }
 
+-(BOOL)isEqualToDate:(NSDate *)nextDate byUnits:(NSCalendarUnit)units
+{
+    return [[self componentsWithUnits:units] isEqual:[nextDate componentsWithUnits:units]];
+}
+
 + (NSCalendar *)defaultCalendar
 {
     return [NSCalendar currentCalendar];

@@ -15,6 +15,7 @@
 -(NSInteger)minutesUntilDate:(NSDate *)nextDate;
 -(NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units untilDate:(NSDate *)nextDate;
 -(NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units;
+-(BOOL)isEqualToDate:(NSDate *)nextDate byUnits:(NSCalendarUnit)units;
 + (NSCalendar *)defaultCalendar;
 
 @end
