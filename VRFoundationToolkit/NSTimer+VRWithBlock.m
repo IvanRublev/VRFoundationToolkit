@@ -22,7 +22,8 @@
     [invocation setTarget:timer];
     [invocation setSelector:@selector(runBlock:)];
     
-    [invocation setArgument:&block atIndex:2];
+    id localBlock = [block copy];
+    [invocation setArgument:&localBlock atIndex:2];
     [invocation retainArguments];
     
     return timer;
