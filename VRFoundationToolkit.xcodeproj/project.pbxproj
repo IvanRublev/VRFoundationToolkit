@@ -63,6 +63,8 @@
 		ABF24FC81935D10500236CE6 /* NSTimer+VRWithBlock.h in Headers */ = {isa = PBXBuildFile; fileRef = ABF24FC61935D10500236CE6 /* NSTimer+VRWithBlock.h */; };
 		ABF24FC91935D10500236CE6 /* NSTimer+VRWithBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF24FC71935D10500236CE6 /* NSTimer+VRWithBlock.m */; };
 		ABF24FCA1935D10500236CE6 /* NSTimer+VRWithBlock.m in Sources */ = {isa = PBXBuildFile; fileRef = ABF24FC71935D10500236CE6 /* NSTimer+VRWithBlock.m */; };
+		ABFFEA0E19DEA2D90046FB08 /* NSArray+VRArgument.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFFEA0D19DEA2D90046FB08 /* NSArray+VRArgument.m */; };
+		ABFFEA1119DEAC2D0046FB08 /* NSArray+VRArgumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = ABFFEA1019DEAC2D0046FB08 /* NSArray+VRArgumentTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -174,6 +176,9 @@
 		ABC9BF2818B9A0F800C6566F /* VRSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRSingleton.h; sourceTree = "<group>"; };
 		ABF24FC61935D10500236CE6 /* NSTimer+VRWithBlock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+VRWithBlock.h"; sourceTree = "<group>"; };
 		ABF24FC71935D10500236CE6 /* NSTimer+VRWithBlock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSTimer+VRWithBlock.m"; sourceTree = "<group>"; };
+		ABFFEA0C19DEA2D90046FB08 /* NSArray+VRArgument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+VRArgument.h"; sourceTree = "<group>"; };
+		ABFFEA0D19DEA2D90046FB08 /* NSArray+VRArgument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+VRArgument.m"; sourceTree = "<group>"; };
+		ABFFEA1019DEAC2D0046FB08 /* NSArray+VRArgumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+VRArgumentTest.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +335,7 @@
 				AB352E1C18CCDBDD00F6C8B6 /* VREnumTests.m */,
 				AB3DC125192384FE0067DFD3 /* VRTypeOfTests.m */,
 				AB0A049A18BF4AD400A377B4 /* VRProtocolConformationTests.m */,
+				ABFFEA1019DEAC2D0046FB08 /* NSArray+VRArgumentTest.m */,
 				AB909D5918BDCC6200EF2795 /* NSObject+VRPropertiesProcessingTests */,
 				AB3CA4BE18B768EA0079964E /* Supporting Files */,
 			);
@@ -363,6 +369,7 @@
 				AB3DC1241923841E0067DFD3 /* VRTypeOf.h */,
 				AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */,
 				ABC9BF2818B9A0F800C6566F /* VRSingleton.h */,
+				ABFFEA0F19DEA2DD0046FB08 /* NSArray+VRArgument */,
 			);
 			name = "Functions and categories";
 			sourceTree = "<group>";
@@ -463,6 +470,15 @@
 				ABF24FC71935D10500236CE6 /* NSTimer+VRWithBlock.m */,
 			);
 			name = "NSTimer+VRWithBlock";
+			sourceTree = "<group>";
+		};
+		ABFFEA0F19DEA2DD0046FB08 /* NSArray+VRArgument */ = {
+			isa = PBXGroup;
+			children = (
+				ABFFEA0C19DEA2D90046FB08 /* NSArray+VRArgument.h */,
+				ABFFEA0D19DEA2D90046FB08 /* NSArray+VRArgument.m */,
+			);
+			name = "NSArray+VRArgument";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -582,6 +598,7 @@
 				AB03521E18D07889006C69D0 /* VRURLConnectionChecker.m in Sources */,
 				AB909D4F18BDC86600EF2795 /* NSObject+VRPropertiesProcessing.m in Sources */,
 				AB3CA4E218B770470079964E /* NSFileManager+VRDocumentsDirectory.m in Sources */,
+				ABFFEA0E19DEA2D90046FB08 /* NSArray+VRArgument.m in Sources */,
 				AB3CA4EE18B776DE0079964E /* NSString+VRMd5.m in Sources */,
 				AB3CA4EA18B775F00079964E /* NSDate+VRDurations.m in Sources */,
 				AB3CA56118B785200079964E /* NSArray+VRCheckMembers.m in Sources */,
@@ -602,6 +619,7 @@
 				AB352DF918CBF46F00F6C8B6 /* NSInvocation+EXT.m in Sources */,
 				AB352E1D18CCDBDD00F6C8B6 /* VREnumTests.m in Sources */,
 				AB3DC126192384FE0067DFD3 /* VRTypeOfTests.m in Sources */,
+				ABFFEA1119DEAC2D0046FB08 /* NSArray+VRArgumentTest.m in Sources */,
 				AB352DF518CBF46F00F6C8B6 /* EXTRuntimeExtensions.m in Sources */,
 				AB3DC12919238B300067DFD3 /* VRPPMyClassConditionalProperties.m in Sources */,
 				AB0A049B18BF4AD400A377B4 /* VRProtocolConformationTests.m in Sources */,

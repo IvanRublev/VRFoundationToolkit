@@ -30,6 +30,7 @@
 #import "NSString+VRmd5.h"
 #import "NSObject+VRPropertiesProcessing.h"
 #import "NSArray+VRCheckMembers.h"
+#import "NSArray+VRArgument.h"
 #import "NSMutableDictionary+VRExchangeKeys.h"
 #import "NSBundle+VRDisplayName.h"
 #import "VRURLConnectionChecker.h"
