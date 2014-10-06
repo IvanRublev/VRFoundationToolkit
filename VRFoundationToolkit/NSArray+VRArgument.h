@@ -10,4 +10,5 @@
 
 @interface NSArray (VRArgument)
 - (void)passTo:(id)target selector:(SEL)selector;
+- (void)passToClass:(Class)class selector:(SEL)selector;
 @end
