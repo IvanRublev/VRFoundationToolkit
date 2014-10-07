@@ -38,14 +38,14 @@ metamacro_expand_(__VA_ARGS__) \
 
 #define VRENUM_TYPEDEF_AND_UTILS(tdeName, intType, ...) \
 VRENUM_TYPEDEF(tdeName, intType, __VA_ARGS__) \
-NS_INLINE BOOL isValid##tdeName (intType value) { \
+__attribute__((unused)) NS_INLINE BOOL isValid##tdeName (intType value) { \
 return metamacro_foreach_cxt(__VRENUM_CHECK, ||, value, __VA_ARGS__); \
 }; \
-NS_INLINE NSString * NSStringFrom##tdeName (intType value) { \
+__attribute__((unused)) NS_INLINE NSString * NSStringFrom##tdeName (intType value) { \
 metamacro_foreach_cxt(__VRENUM_RETURN_VALUE_AS_STRING_IF_MATCHES_CONTEXT, , value, __VA_ARGS__); \
 return [NSString stringWithFormat:@"undefined (%@)", @(value)]; \
 }; \
-NS_INLINE void enumerate##tdeName##WithBlock (void (^enumeratorBlock)(intType value)) { \
+__attribute__((unused)) NS_INLINE void enumerate##tdeName##WithBlock (void (^enumeratorBlock)(intType value)) { \
 metamacro_foreach_cxt(__VRENUM_RUNBLOCK_WITH_VALUE, , enumeratorBlock, __VA_ARGS__); \
 }; \
 
