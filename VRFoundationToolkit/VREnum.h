@@ -29,6 +29,7 @@
 
 #define __VRENUM_CHECK(IDX, CONTEXT, VALUE) (CONTEXT == VALUE)
 #define __VRENUM_RETURN_VALUE_AS_STRING_IF_MATCHES_CONTEXT(IDX, CONTEXT, VALUE) if (CONTEXT == VALUE) return @#VALUE;
+#define __VRENUM_RUNBLOCK_WITH_VALUE(IDX, CONTEXT, VALUE) CONTEXT(VALUE);
 
 #define VRENUM_TYPEDEF(tdeName, intType, ...) \
 typedef NS_ENUM(intType, tdeName) {\
@@ -43,6 +44,9 @@ return metamacro_foreach_cxt(__VRENUM_CHECK, ||, value, __VA_ARGS__); \
 NS_INLINE NSString * NSStringFrom##tdeName (intType value) { \
 metamacro_foreach_cxt(__VRENUM_RETURN_VALUE_AS_STRING_IF_MATCHES_CONTEXT, , value, __VA_ARGS__); \
 return [NSString stringWithFormat:@"undefined (%@)", @(value)]; \
+}; \
+NS_INLINE void enumerate##tdeName##WithBlock (void (^enumeratorBlock)(intType value)) { \
+metamacro_foreach_cxt(__VRENUM_RUNBLOCK_WITH_VALUE, , enumeratorBlock, __VA_ARGS__); \
 }; \
 
 #endif
