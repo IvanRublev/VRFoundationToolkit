@@ -38,11 +38,11 @@
     [self passTo:target selector:selector signature:aSignature];
 }
 
-- (void)passToClass:(Class)class selector:(SEL)selector
+- (void)passToClass:(Class)aClass selector:(SEL)selector
 {
     NSMethodSignature *aSignature;
-    aSignature = [class methodSignatureForSelector:selector];
-    [self passTo:class selector:selector signature:aSignature];
+    aSignature = [aClass methodSignatureForSelector:selector];
+    [self passTo:aClass selector:selector signature:aSignature];
 }
 
 @end
