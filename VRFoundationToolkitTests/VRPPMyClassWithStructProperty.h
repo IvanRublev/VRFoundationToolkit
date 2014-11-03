@@ -16,4 +16,5 @@ typedef struct sMyStruct {
 @interface VRPPMyClassWithStructProperty : NSObject <NSCoding>
 @property (nonatomic, readwrite) NSString * title;
 @property (nonatomic, assign) MyStruct structure;
+@property (nonatomic, assign) NSRange range;
 @end

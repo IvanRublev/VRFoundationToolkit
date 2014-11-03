@@ -25,14 +25,23 @@
  *
  */
 
+typedef BOOL(^VRCheckStructuresEqualityBlock)(id obj1, id obj2, NSSet* structurePropertiesNames);
+typedef NSArray*(^VRHashStructuresBlock)(id object, NSSet* structurePropertiesNames);
+typedef void (^VREncodeStructuresBlock)(NSCoder * aCoder, NSSet * structurePropertiesNames);
+typedef void (^VRDecodeStructuresBlock)(NSCoder * aDecoder, NSSet * structurePropertiesNames);
+
+NSUInteger VRCombinedHash(NSUInteger previousHash, NSUInteger hash); // this function is used to combine hashes of object properties.
+
 @interface NSObject (VRPropertiesProcessing)
-- (void)enumeratePropertiesUsingBlock:(void (^)(NSString * propertyName, id propertyValue, __unsafe_unretained Class valuesClass))block;
+- (void)enumeratePropertiesUsingBlock:(void (^)(NSString * propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop))block;
 
 - (NSString *)descriptionWithProperties;
 - (NSString *)descriptionWithPropertiesTypes;
 
 - (BOOL)isEqualByProperties:(id)object; // If object is of different class then returns NO. It's faster then [-hashByProperties]
+- (BOOL)isEqualByProperties:(id)object checkStructuresEqualityBlock:(VRCheckStructuresEqualityBlock)checkStructuresEqualityBlock;
 - (NSUInteger)hashByProperties;
+- (NSUInteger)hashByPropertiesWithHashStructuresBlock:(VRHashStructuresBlock)calculateHashesOfStructures;
 
 - (id)deepCopyPropertiesToNewInstanceWithZone:(NSZone *)zone;
 - (void)deepCopyPropertiesTo:(id)targetObject;
@@ -43,11 +52,11 @@
                     conditionally:(NSSet *)namesOfPropertiesForConditionalEncoding
                              skip:(NSSet *)namesOfPropertiesToSkip;
 - (void)encodePropertiesWithCoder:(NSCoder *)aCoder
-       encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock;
+       encodeStructuresProperties:(VREncodeStructuresBlock)encodeStructuresBlock;
 - (void)encodePropertiesWithCoder:(NSCoder *)aCoder
                     conditionally:(NSSet *)namesOfPropertiesForConditionalEncoding
                              skip:(NSSet *)namesOfPropertiesToSkip
-       encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock; // Allows to encode structures manually in block. structurePropertiesNames are provided to debug purposes.
+       encodeStructuresProperties:(VREncodeStructuresBlock)encodeStructuresBlock; // Allows to encode structures manually in block. structurePropertiesNames are provided to debug purposes.
 - (id)initPropertiesWithCoder:(NSCoder *)aDecoder;
-- (id)initPropertiesWithCoder:(NSCoder *)aDecoder decodeStructuresProperties:(void (^)(NSCoder * aDecoder, NSArray * structurePropertiesNames))decodeStructuresBlock; // Allows to decode structures in block and set them to theSelf.
+- (id)initPropertiesWithCoder:(NSCoder *)aDecoder decodeStructuresProperties:(VRDecodeStructuresBlock)decodeStructuresBlock; // Allows to decode structures in block and set them to theSelf.
 @end

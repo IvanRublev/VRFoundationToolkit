@@ -76,7 +76,7 @@ XCTAssertTrue(tr, @"Value %@ does not matches pattern %@!", str, pattern);} whil
     [self fillObj:obj1];
     
     NSMutableString * values = [NSMutableString stringWithString:@""];
-    [obj1 enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+    [obj1 enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         [values appendFormat:@".%@ = %@; ", propertyName, propertyValue];
     }];
     NSLog(@"====");
@@ -97,6 +97,49 @@ XCTAssertTrue(tr, @"Value %@ does not matches pattern %@!", str, pattern);} whil
     XCTAssertTrue([obj2 isEqualByProperties:obj1], @"obj must be equal to object filled with same values!"); // vice versa
     XCTAssertFalse([obj1 isEqualByProperties:obj3], @"obj must not be equal empty object!");
     XCTAssertFalse([obj3 isEqualByProperties:obj1], @"obj must not be equal empty object!");
+    obj1.title = nil;
+    obj2.title = nil;
+    XCTAssertTrue([obj1 isEqualByProperties:obj2], @"obj must be equal to object filled with same values!");
+    obj2.value = 0;
+    XCTAssertFalse([obj1 isEqualByProperties:obj2], @"objects must be different!");
+}
+
+- (void)testEqualByPropertiesWithStructures
+{
+    VRPPMyClassWithStructProperty * structObj1 = [VRPPMyClassWithStructProperty new];
+    VRPPMyClassWithStructProperty * structObj2 = [VRPPMyClassWithStructProperty new];
+    VRPPMyClassWithStructProperty * structObj3 = [VRPPMyClassWithStructProperty new];
+    NSString * commonTitle = @"Hello";
+    MyStruct commonStruct = (MyStruct){123, 1.02};
+    NSRange commonRange = NSMakeRange(7, 268);
+    structObj1.title = commonTitle;
+    structObj1.structure = commonStruct;
+    structObj1.range = commonRange;
+    structObj2.title = commonTitle;
+    structObj2.structure = commonStruct;
+    structObj2.range = commonRange;
+
+    XCTAssertThrows([structObj1 isEqualByProperties:structObj1], @"Must throw exception because of structures");
+    
+    VRCheckStructuresEqualityBlock checkerBlock = ^BOOL(id objFirst, id objSecond, NSSet *structurePropertiesNames) {
+        VRPPMyClassWithStructProperty * structObjFirst = objFirst;
+        VRPPMyClassWithStructProperty * structObjSecond = objSecond;
+        return
+        structObjFirst.structure.a == structObjSecond.structure.a &&
+        structObjFirst.structure.b == structObjSecond.structure.b &&
+        structObjFirst.range.location == structObjSecond.range.location &&
+        structObjFirst.range.length == structObjSecond.range.length;
+    };
+    XCTAssertTrue([structObj1 isEqualByProperties:structObj1 checkStructuresEqualityBlock:checkerBlock], @"obj must be equal self!");
+    XCTAssertTrue([structObj1 isEqualByProperties:structObj2 checkStructuresEqualityBlock:checkerBlock], @"obj must be equal to object filled with same values!");
+    XCTAssertTrue([structObj2 isEqualByProperties:structObj1 checkStructuresEqualityBlock:checkerBlock], @"obj must be equal to object filled with same values!"); // vice versa
+    XCTAssertFalse([structObj1 isEqualByProperties:structObj3 checkStructuresEqualityBlock:checkerBlock], @"obj must not be equal empty object!");
+    XCTAssertFalse([structObj3 isEqualByProperties:structObj1 checkStructuresEqualityBlock:checkerBlock], @"obj must not be equal empty object!");
+    structObj1.title = nil;
+    structObj2.title = nil;
+    XCTAssertTrue([structObj1 isEqualByProperties:structObj2 checkStructuresEqualityBlock:checkerBlock], @"obj must be equal to object filled with same values!");
+    structObj2.structure = (MyStruct){900, 123.133};
+    XCTAssertFalse([structObj1 isEqualByProperties:structObj2 checkStructuresEqualityBlock:checkerBlock], @"objects must be different!");
 }
 
 - (void)testDeepCopyPropertiesToNewInstanceWithZone
@@ -136,14 +179,40 @@ XCTAssertTrue(tr, @"Value %@ does not matches pattern %@!", str, pattern);} whil
     NSUInteger objNewUsuallHash  = [objNew hash];
     
     NSLog(@"====");
-    NSLog(@"For obj1   hash by properties: %d, usuall hash: %d", obj1HashByProps, obj1UsuallHash);
-    NSLog(@"For objNew hash by properties: %d, usuall hash: %d", objNewHashByProps, objNewUsuallHash);
+    NSLog(@"For obj1   hash by properties: %lu, usuall hash: %lu", (unsigned long)obj1HashByProps, (unsigned long)obj1UsuallHash);
+    NSLog(@"For objNew hash by properties: %lu, usuall hash: %lu", (unsigned long)objNewHashByProps, (unsigned long)objNewUsuallHash);
     NSLog(@"Usuall hashes differs because VRPPMyClass itsefl doesn't contains address independent version of [-hash].");
     NSLog(@"====");
 
+#if __LP64__
+    NSUInteger etalon = 762917443134592889;
+#else
     NSUInteger etalon = 1004900858;
+#endif
+
     XCTAssertTrue(obj1HashByProps   == etalon, @"Hash must be equal to etalon!");
     XCTAssertTrue(objNewHashByProps == etalon, @"Hash must be equal to etalon!");
+}
+
+- (void)testHashByPropertiesWithStructures
+{
+    VRPPMyClassWithStructProperty * objStr = [VRPPMyClassWithStructProperty new];
+    objStr.title = @"Hello";
+    objStr.structure = (MyStruct){123, 1.02};
+    objStr.range = NSMakeRange(7, 268);
+    XCTAssertThrows([objStr hashByProperties], @"hashByProperties must trow exception with point to structure aware method.");
+
+    NSUInteger theHash = [objStr hashByPropertiesWithHashStructuresBlock:^NSArray *(id object, NSSet *structurePropertiesNames) {
+        return @[@(objStr.range.location*objStr.range.length), @((NSUInteger)(objStr.structure.a*objStr.structure.b))];
+    }];
+
+#if __LP64__
+    NSUInteger etalon = 12373978410340;
+#else
+    NSUInteger etalon = 230845796;
+#endif
+    XCTAssertTrue(theHash == etalon, @"Hash (%lu) mustbe equal to etalon (%lu).", (unsigned long)theHash, (unsigned long)etalon);
+    
 }
 
 - (void)testEncodePropertiesWithCoderAndInitPropertiesWithCoder

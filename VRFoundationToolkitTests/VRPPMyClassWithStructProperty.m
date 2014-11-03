@@ -13,7 +13,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)aCoder
 {
-    [self encodePropertiesWithCoder:aCoder encodeStructuresProperties:^(NSCoder *aCoder, NSArray *structurePropertiesNames) {
+    [self encodePropertiesWithCoder:aCoder encodeStructuresProperties:^(NSCoder *aCoder, NSSet *structurePropertiesNames) {
         [aCoder encodeInteger:_structure.a forKey:@"the a"];
         [aCoder encodeDouble:_structure.b forKey:@"the b"];
     }];
@@ -23,7 +23,7 @@
 {
     self = [self init];
     if (self) {
-        self = [self initPropertiesWithCoder:aDecoder decodeStructuresProperties:^(NSCoder *aDecoder, NSArray *structurePropertiesNames) {
+        self = [self initPropertiesWithCoder:aDecoder decodeStructuresProperties:^(NSCoder *aDecoder, NSSet *structurePropertiesNames) {
             MyStruct theStruct = {
                 [aDecoder decodeIntegerForKey:@"the a"],
                 [aDecoder decodeDoubleForKey:@"the b"]

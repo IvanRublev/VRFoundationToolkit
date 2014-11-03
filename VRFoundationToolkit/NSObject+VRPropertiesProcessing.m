@@ -33,7 +33,7 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 #define kNSObjectVRPropertiesProcessingIgnorePrefix @"const"
 @implementation NSObject (VRPropertiesProcessing)
 
-- (void)enumeratePropertiesUsingBlock:(void (^)(NSString * propertyName, id propertyValue, __unsafe_unretained Class valuesClass))block
+- (void)enumeratePropertiesUsingBlock:(void (^)(NSString * propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop))block
 {
     unsigned count;
     objc_property_t *properties = class_copyPropertyList([self class], &count);
@@ -50,7 +50,11 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
             continue;
         }
         id propertyObject = [self valueForKey:name];
-        block(name, propertyObject, [propertyObject class]);
+        BOOL shouldStop = NO;
+        block(name, propertyObject, [propertyObject class], &shouldStop);
+        if (shouldStop) {
+            break;
+        }
     }
     free(properties);
     return;
@@ -59,7 +63,7 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 - (NSString *)descriptionWithPropertiesTypes
 {
     NSMutableArray * propertiesDescriptions = [NSMutableArray array];
-    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         [propertiesDescriptions addObject:[NSString stringWithFormat:@".%@:%@", propertyName, NSStringFromClass(valuesClass)]];
     }];
     NSString * myDesc = [NSString stringWithFormat:@"<%@:%p %@>",
@@ -72,7 +76,7 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 - (NSString *)descriptionWithProperties
 {
     NSMutableArray * propertiesDescriptions = [NSMutableArray array];
-    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         [propertiesDescriptions addObject:[NSString stringWithFormat:@".%@=%@", propertyName, propertyValue]];
     }];
     NSString * myDesc = [NSString stringWithFormat:@"<%@:%p %@>",
@@ -84,63 +88,104 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 
 - (BOOL)isEqualByProperties:(id)object
 {
+    return [self isEqualByProperties:object checkStructuresEqualityBlock:nil];
+}
+
+- (BOOL)isEqualByProperties:(id)object checkStructuresEqualityBlock:(VRCheckStructuresEqualityBlock)checkStructuresEqualityBlock
+{
     __block BOOL equal = YES;
     if (![object isKindOfClass:[self class]]) {
         return NO;
     }
-    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+    BOOL processStructures = (checkStructuresEqualityBlock != nil);
+    NSMutableSet * structuresPropertiesNames = [NSMutableSet set];
+    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         if (propertyValue == nil) {
             equal = ([object valueForKey:propertyName] == nil);
         } else {
-            BOOL propertyValueSupportsCompare = VRCanPerform(propertyValue, @selector(isEqual:), @protocol(NSObject));
+            BOOL propertyValueSupportsCompare = [[propertyValue class] instancesRespondToSelector:@selector(isEqual:)];
             BOOL propertyValueIsStructure = isStructInValue(propertyValue);
             if (propertyValueSupportsCompare && !propertyValueIsStructure) {
-#ifdef DEBUG
-                // Check if [-isEqual] compares values by address.
-                id propertyValueDeepCopy = deepCopyOfObj(propertyValue);
-                id propertyValueDeepCopy2 = deepCopyOfObj(propertyValue);
-                if ([propertyValueDeepCopy isEqual:propertyValueDeepCopy2]) {
-#endif
-                    if (![propertyValue isEqual:[object valueForKey:propertyName]]) {
-                        equal = NO;
-                        return;
-                    }
-#ifdef DEBUG
-                } else {
-                    VREPLOG_ERROR(@"Can't compare property .%@ by value. Deep copies of propertie's value are not equal. You must implement address independet [- isEqual:], for (%@) class or some of it's members.", propertyName, NSStringFromClass(valuesClass));
+                if (![propertyValue isEqual:[object valueForKey:propertyName]]) {
+                    equal = NO;
                 }
-#endif
             } else {
                 if (propertyValueIsStructure) {
+                    if (processStructures) {
+                        [structuresPropertiesNames addObject:propertyName];
+                    } else {
 #ifndef VRPREVENT_STRUCT_NOT_COMPARED_ERROR_LOG
-                    VRLOG_ERROR(@"Property \"%@\" is of structure type! So instances of class (%@) can't be compared automatically!", propertyName, NSStringFromClass([self class]));
+                        VRLOG_ERROR_ASSERT(@"Can't check equality for class (%@) because it contains structure property. Check equality of structures manually in block passed to -[isEqualByProperties:structuresEqualBlock:]", NSStringFromClass([self class]));
 #endif
+                        equal = NO;
+                    }
                 } else {
-                    VREPLOG_ERROR(@"Value of property .%@ not supporting [-isEqual:]. So instances of class (%@) can't be compared!", propertyName, NSStringFromClass([self class]));
+                    VREPLOG_ERROR(@"Class of property .%@ value doesn't realize [-isEqual:]. So instances of class (%@) can't be compared!", propertyName, NSStringFromClass([self class]));
+                    equal = NO;
                 }
-                equal = NO;
+            }
+        }
+        *stop = !equal;
+    }];
+    if (equal && processStructures && [structuresPropertiesNames count]) {
+        BOOL structureaAreEqual = checkStructuresEqualityBlock(self, object, structuresPropertiesNames);
+        equal = structureaAreEqual;
+    }
+    return equal;
+}
+
+// As suggested by Mike Ash in http://www.mikeash.com/pyblog/friday-qa-2010-06-18-implementing-equality-and-hashing.html
+#define NSUINT_BIT (CHAR_BIT * sizeof(NSUInteger))
+#define NSUINTROTATE(val, howmuch) ((((NSUInteger)val) << howmuch) | (((NSUInteger)val) >> (NSUINT_BIT - howmuch)))
+
+NSUInteger VRCombinedHash(NSUInteger previousHash, NSUInteger hash)
+{
+    return NSUINTROTATE(previousHash, NSUINT_BIT / 2) ^ hash;
+}
+
+// Use this to count hashes for structures in block manually.
+// You can return common hash for structures in first element of array or, one by one.
+- (NSUInteger)hashByPropertiesWithHashStructuresBlock:(VRHashStructuresBlock)calculateHashesOfStructures
+{
+    __block NSUInteger hash = 0;
+    BOOL processStructures = (calculateHashesOfStructures != nil);
+    NSMutableSet * structuresPropertiesNames = [NSMutableSet set];
+    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
+        if (!isStructInValue(propertyValue)) {
+            hash = VRCombinedHash(hash, [propertyValue hash]);
+        } else {
+            if (processStructures) {
+                [structuresPropertiesNames addObject:propertyName];
+            } else {
+                VRLOG_ERROR_ASSERT(@"Can't count hash automatically for %@ class because it has properties of structure type. Property \"%@\" is of structure type! Please count hash for structures manually in block passed to -[hashByPropertiesWithHashStructuresBlock:]",
+                                   NSStringFromClass([self class]), propertyName);
             }
         }
     }];
-    return equal;
+    if (processStructures && [structuresPropertiesNames count]) {
+        VRPRECONDITIONS_LOG_ERROR_ASSERT_RETURN_VALUE(hash, calculateHashesOfStructures);
+        NSArray * hashesOfStructures = calculateHashesOfStructures(self, structuresPropertiesNames);
+        if ([hashesOfStructures count]) {
+            [hashesOfStructures enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                NSUInteger structureHash = [obj unsignedIntegerValue];
+                hash = VRCombinedHash(hash, structureHash);
+            }];
+        } else {
+            VRLOG_ERROR_ASSERT(@"No hashes were returned from block!");
+        }
+    }
+    return hash;
 }
 
 - (NSUInteger)hashByProperties
 {
-    // As suggested by Mike Ash in http://www.mikeash.com/pyblog/friday-qa-2010-06-18-implementing-equality-and-hashing.html
-#define NSUINT_BIT (CHAR_BIT * sizeof(NSUInteger))
-#define NSUINTROTATE(val, howmuch) ((((NSUInteger)val) << howmuch) | (((NSUInteger)val) >> (NSUINT_BIT - howmuch)))
-    __block NSUInteger hash = 0;
-    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
-        hash = NSUINTROTATE(hash, NSUINT_BIT / 2) ^ [propertyValue hash];
-    }];
-    return hash;
+    return [self hashByPropertiesWithHashStructuresBlock:nil];
 }
 
 - (id)deepCopyPropertiesToNewInstanceWithZone:(NSZone *)zone
 {
     id selfCopy = [[[self class] allocWithZone:zone] init];
-    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         [selfCopy setValue:propertyValue forKey:propertyName];
     }];
     return selfCopy;
@@ -152,7 +197,7 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
         VREPLOG_ERROR(@"Can't deep copy propeties. targetObject class (%@) differs from self's class (%@).", NSStringFromClass([targetObject class]), NSStringFromClass([self class]));
         return;
     }
-    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         id propertyValueDeepCopy = deepCopyOfObj(propertyValue);
         if (propertyValue != nil && propertyValueDeepCopy == nil) {
             VREPLOG_ERROR(@"Error occured on copying of .%@ property value.", propertyName);
@@ -178,7 +223,7 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 }
 
 - (void)encodePropertiesWithCoder:(NSCoder *)aCoder
-       encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock
+       encodeStructuresProperties:(VREncodeStructuresBlock)encodeStructuresBlock
 {
     [self encodePropertiesWithCoder:aCoder conditionally:nil skip:nil encodeStructuresProperties:encodeStructuresBlock];
 }
@@ -186,10 +231,10 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 - (void)encodePropertiesWithCoder:(NSCoder *)aCoder
                     conditionally:(NSSet *)namesOfPropertiesForConditionalEncoding
                              skip:(NSSet *)namesOfPropertiesToSkip
-       encodeStructuresProperties:(void (^)(NSCoder * aCoder, NSArray * structurePropertiesNames))encodeStructuresBlock
+       encodeStructuresProperties:(VREncodeStructuresBlock)encodeStructuresBlock
 {
-    NSMutableArray * structurePropertiesNames = [NSMutableArray array];
-    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+    NSMutableSet * structurePropertiesNames = [NSMutableSet set];
+    [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         BOOL skip = [namesOfPropertiesToSkip containsObject:propertyName];
         if (propertyValue != nil && !skip) {
             __block BOOL propertySupportsNSCoding = YES;
@@ -261,11 +306,11 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
     return [self initPropertiesWithCoder:aDecoder decodeStructuresProperties:nil];
 }
 
-- (id)initPropertiesWithCoder:(NSCoder *)aDecoder decodeStructuresProperties:(void (^)(NSCoder * aDecoder, NSArray * structurePropertiesNames))decodeStructuresBlock
+- (id)initPropertiesWithCoder:(NSCoder *)aDecoder decodeStructuresProperties:(VRDecodeStructuresBlock)decodeStructuresBlock
 {
-    NSMutableArray * structurePropertiesNames = [NSMutableArray array];
+    NSMutableSet * structurePropertiesNames = [NSMutableSet set];
     if (self) {
-        [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass) {
+        [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
             if (propertyName != nil) {
                 if (isStructInValue(propertyValue)) {
                     [structurePropertiesNames addObject:propertyName];
