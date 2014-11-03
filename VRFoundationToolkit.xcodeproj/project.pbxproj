@@ -46,6 +46,7 @@
 		AB3DC123192369550067DFD3 /* VRPPMyClassWithStructProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3DC122192369550067DFD3 /* VRPPMyClassWithStructProperty.m */; };
 		AB3DC126192384FE0067DFD3 /* VRTypeOfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3DC125192384FE0067DFD3 /* VRTypeOfTests.m */; };
 		AB3DC12919238B300067DFD3 /* VRPPMyClassConditionalProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3DC12819238B300067DFD3 /* VRPPMyClassConditionalProperties.m */; };
+		AB71F4C51A0748510074AB6C /* VRComparison.m in Sources */ = {isa = PBXBuildFile; fileRef = AB71F4C41A0748510074AB6C /* VRComparison.m */; };
 		AB907B9F18DA137100223363 /* EXTScope.m in Sources */ = {isa = PBXBuildFile; fileRef = AB352DC818CBF46F00F6C8B6 /* EXTScope.m */; };
 		AB907BA018DA138400223363 /* VRURLConnectionChecker.m in Sources */ = {isa = PBXBuildFile; fileRef = AB03521D18D07889006C69D0 /* VRURLConnectionChecker.m */; };
 		AB907BA118DA138400223363 /* NSMutableDictionary+VRExchangeKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = AB3CA58618B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m */; };
@@ -161,6 +162,8 @@
 		AB3DC125192384FE0067DFD3 /* VRTypeOfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRTypeOfTests.m; sourceTree = "<group>"; };
 		AB3DC12719238B300067DFD3 /* VRPPMyClassConditionalProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMyClassConditionalProperties.h; sourceTree = "<group>"; };
 		AB3DC12819238B300067DFD3 /* VRPPMyClassConditionalProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMyClassConditionalProperties.m; sourceTree = "<group>"; };
+		AB71F4C31A0748450074AB6C /* VRComparison.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRComparison.h; sourceTree = "<group>"; };
+		AB71F4C41A0748510074AB6C /* VRComparison.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRComparison.m; sourceTree = "<group>"; };
 		AB907B7418DA09D300223363 /* libVRFoundationToolkitOSX.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVRFoundationToolkitOSX.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB907B7518DA09D300223363 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		AB907B7818DA09D300223363 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -354,6 +357,7 @@
 		AB3CA4CD18B769690079964E /* Functions and categories */ = {
 			isa = PBXGroup;
 			children = (
+				AB71F4C21A0748180074AB6C /* VRComparison */,
 				AB03521F18D07890006C69D0 /* VRURLConnectionChecker */,
 				AB3CA58818B797090079964E /* NSMutableDictionary+VRExchangeKeys */,
 				AB3CA56218B785740079964E /* NSArray+VRCheckMembers */,
@@ -426,6 +430,15 @@
 				AB3CA58618B796A10079964E /* NSMutableDictionary+VRExchangeKeys.m */,
 			);
 			name = "NSMutableDictionary+VRExchangeKeys";
+			sourceTree = "<group>";
+		};
+		AB71F4C21A0748180074AB6C /* VRComparison */ = {
+			isa = PBXGroup;
+			children = (
+				AB71F4C31A0748450074AB6C /* VRComparison.h */,
+				AB71F4C41A0748510074AB6C /* VRComparison.m */,
+			);
+			name = VRComparison;
 			sourceTree = "<group>";
 		};
 		AB907B7718DA09D300223363 /* Other Frameworks */ = {
@@ -603,6 +616,7 @@
 				AB3CA4EA18B775F00079964E /* NSDate+VRDurations.m in Sources */,
 				AB3CA56118B785200079964E /* NSArray+VRCheckMembers.m in Sources */,
 				AB3CA4F218B77A7B0079964E /* VRProtocolConformation.m in Sources */,
+				AB71F4C51A0748510074AB6C /* VRComparison.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -35,3 +35,4 @@
 #import "NSBundle+VRDisplayName.h"
 #import "VRURLConnectionChecker.h"
 #import "NSTimer+VRWithBlock.h"
+#import "VRComparison.h"
