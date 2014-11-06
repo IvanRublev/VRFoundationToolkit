@@ -10,6 +10,15 @@
 
 @implementation NSDate (VRDurations)
 
+- (NSDate *)endOfDay
+{
+    NSDateComponents * allComponents = [self componentsWithUnits:NSUIntegerMax];
+    allComponents.hour = 23;
+    allComponents.minute = 59;
+    allComponents.second = 59;
+    return [[[self class] defaultCalendar] dateFromComponents:allComponents];
+}
+
 - (NSInteger)daysUntilDate:(NSDate *)nextDate
 {
     return [[self componentsWithUnits:NSDayCalendarUnit untilDate:nextDate] day];

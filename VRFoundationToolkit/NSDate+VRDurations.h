@@ -10,12 +10,15 @@
 
 @interface NSDate (VRDurations)
 
+-(NSDate *)endOfDay;
+
 -(NSInteger)daysUntilDate:(NSDate *)nextDate;
 -(NSInteger)hoursUntilDate:(NSDate *)nextDate;
 -(NSInteger)minutesUntilDate:(NSDate *)nextDate;
 -(NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units untilDate:(NSDate *)nextDate;
 -(NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units;
 -(BOOL)isEqualToDate:(NSDate *)nextDate byUnits:(NSCalendarUnit)units;
+
 + (NSCalendar *)defaultCalendar;
 
 @end
