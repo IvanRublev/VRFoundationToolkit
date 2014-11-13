@@ -48,4 +48,25 @@
     }];
     return result;
 }
+
+- (BOOL)allMembersRespondsToSelector:(SEL)testSelector
+{
+    return [self allMembersRespondsToSelector:testSelector options:0];
+}
+
+- (BOOL)allMembersRespondsToSelector:(SEL)testSelector options:(NSEnumerationOptions)options
+{
+    if (!self) {
+        return NO;
+    }
+    __block BOOL result = YES;
+    [self enumerateObjectsWithOptions:options usingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        if (![obj respondsToSelector:testSelector]) {
+            result = NO;
+            *stop = YES;
+        }
+    }];
+    return result;
+}
+
 @end
