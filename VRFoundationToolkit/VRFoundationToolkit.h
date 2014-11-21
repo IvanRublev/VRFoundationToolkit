@@ -14,8 +14,8 @@
 
 #import <Foundation/Foundation.h>
 
-// Import utility usefull in coding
-#import "libextobjc.h"
+// Import Requirements
+#import "libextobjc.h" 
 
 // Routines
 #import "VRLog.h"

@@ -10,24 +10,6 @@
 #import "VRLog.h"
 #import <objc/runtime.h>
 
-#define VREPLogLevel 0 // 0 - no console log, 1 - errors, 2 - trace
-
-#ifdef DEBUG
-#if VREPLogLevel>0
-#define VREPLOG_ERROR NSLog
-#endif
-#if VREPLogLevel>1
-#define VREPLOG_TRACE NSLog
-#endif
-#endif
-
-#ifndef VREPLOG_TRACE
-#define VREPLOG_TRACE(FMT, ...)
-#endif
-#ifndef VREPLOG_ERROR
-#define VREPLOG_ERROR(FMT, ...)
-#endif
-
 FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
 
 #define kNSObjectVRPropertiesProcessingIgnorePrefix @"const"
@@ -38,7 +20,7 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
     unsigned count;
     objc_property_t *properties = class_copyPropertyList([self class], &count);
     if (properties == nil || count == 0) {
-        VREPLOG_ERROR(@"No properties in object!");
+        VRLOG_TRACE_ASSERT(@"No properties in object!");
         return;
     }
     unsigned i;
@@ -114,13 +96,11 @@ FOUNDATION_STATIC_INLINE BOOL isStructInValue(id value);
                     if (processStructures) {
                         [structuresPropertiesNames addObject:propertyName];
                     } else {
-#ifndef VRPREVENT_STRUCT_NOT_COMPARED_ERROR_LOG
                         VRLOG_ERROR_ASSERT(@"Can't check equality for class (%@) because it contains structure property. Check equality of structures manually in block passed to -[isEqualByProperties:structuresEqualBlock:]", NSStringFromClass([self class]));
-#endif
                         equal = NO;
                     }
                 } else {
-                    VREPLOG_ERROR(@"Class of property .%@ value doesn't realize [-isEqual:]. So instances of class (%@) can't be compared!", propertyName, NSStringFromClass([self class]));
+                    VRLOG_ERROR_ASSERT(@"Class of property .%@ value doesn't realize [-isEqual:]. So instances of class (%@) can't be compared!", propertyName, NSStringFromClass([self class]));
                     equal = NO;
                 }
             }
@@ -194,13 +174,13 @@ NSUInteger VRCombinedHash(NSUInteger previousHash, NSUInteger hash)
 - (void)deepCopyPropertiesTo:(id)targetObject
 {
     if (![targetObject isMemberOfClass:[self class]]) {
-        VREPLOG_ERROR(@"Can't deep copy propeties. targetObject class (%@) differs from self's class (%@).", NSStringFromClass([targetObject class]), NSStringFromClass([self class]));
+        VRLOG_TRACE_ASSERT(@"Can't deep copy propeties. targetObject class (%@) differs from self's class (%@).", NSStringFromClass([targetObject class]), NSStringFromClass([self class]));
         return;
     }
     [self enumeratePropertiesUsingBlock:^(NSString *propertyName, id propertyValue, __unsafe_unretained Class valuesClass, BOOL * stop) {
         id propertyValueDeepCopy = deepCopyOfObj(propertyValue);
         if (propertyValue != nil && propertyValueDeepCopy == nil) {
-            VREPLOG_ERROR(@"Error occured on copying of .%@ property value.", propertyName);
+            VRLOG_TRACE_ASSERT(@"Error occured on copying of .%@ property value.", propertyName);
         } else {
             [targetObject setValue:propertyValueDeepCopy forKey:propertyName];
         }
@@ -274,20 +254,20 @@ NSUInteger VRCombinedHash(NSUInteger previousHash, NSUInteger hash)
                     }
                 }
                 @catch (NSException *exception) {
-                    VREPLOG_ERROR(@"Exeption on coding property .%@. %@: %@.", propertyName, exception.name, exception.reason);
+                    VRLOG_ERROR(@"Exeption on coding property .%@. %@: %@.", propertyName, exception.name, exception.reason);
                 }
-                VREPLOG_TRACE(@"Encoded [%@]%@: %@", valuesClass, propertyName, propertyValue);
+                VRLOG_TRACE(@"Encoded [%@]%@: %@", valuesClass, propertyName, propertyValue);
             } else {
                 if (isStructureInValue) {
                     [structurePropertiesNames addObject:propertyName];
                 } else {
 #ifdef DEBUG
-                VREPLOG_ERROR(@"Property %@ of class %@ is not encoded! It or its members doesn't support NSCoding protocol!", propertyName, NSStringFromClass(valuesClass));
+                VRLOG_ERROR_ASSERT(@"Property %@ of class %@ is not encoded! It or its members doesn't support NSCoding protocol!", propertyName, NSStringFromClass(valuesClass));
 #endif
                 }
             }
         } else {
-            VREPLOG_TRACE(@"Value of .%@ is nil, not encoded.", propertyName);
+            VRLOG_TRACE(@"Value of .%@ is nil, not encoded.", propertyName);
         }
     }];
     if ([structurePropertiesNames count]) {
@@ -315,13 +295,13 @@ NSUInteger VRCombinedHash(NSUInteger previousHash, NSUInteger hash)
                 if (isStructInValue(propertyValue)) {
                     [structurePropertiesNames addObject:propertyName];
                 } else if ([aDecoder containsValueForKey:[self keyForPropertyName:propertyName]]) {
-                    VREPLOG_TRACE(@"Decoding [%@]%@", valuesClass, propertyName);
+                    VRLOG_TRACE(@"Decoding [%@]%@", valuesClass, propertyName);
                     id value = nil;
                     @try {
                         value = [aDecoder decodeObjectForKey:[self keyForPropertyName:propertyName]];
                     }
                     @catch (NSException *exception) {
-                        VREPLOG_ERROR(@"Exeption on decoding property .%@. %@: %@.", propertyName, exception.name, exception.reason);
+                        VRLOG_TRACE_ASSERT(@"Exeption on decoding property .%@. %@: %@.", propertyName, exception.name, exception.reason);
                         value = nil;
                     }
                     Class propertyClass = [self classOfPropertyNamed:propertyName];
@@ -331,13 +311,13 @@ NSUInteger VRCombinedHash(NSUInteger previousHash, NSUInteger hash)
                     {
                         [self setValue:value forKey:propertyName];
                     } else {
-                        VREPLOG_ERROR(@"Can't set value becuse of classes type mismatch.");
+                        VRLOG_TRACE_ASSERT(@"Can't set value becuse of classes type mismatch.");
                     }
                 } else {
-                    VREPLOG_TRACE(@"Property %@ is not restored! No data were saved for it.", propertyName);
+                    VRLOG_TRACE(@"Property %@ is not restored! No data were saved for it.", propertyName);
                 }
             } else {
-                VREPLOG_ERROR(@"Can't decode value for nil property name!");
+                VRLOG_ERROR_ASSERT(@"Can't decode value for nil property name!");
             }
         }];
     }
@@ -437,7 +417,7 @@ FOUNDATION_STATIC_INLINE id deepCopyOfObj(id value)
         VRCanPerform(value, @selector(initWithCoder:), @protocol(NSCoding))) {
         newValue = [NSKeyedUnarchiver unarchiveObjectWithData:[NSKeyedArchiver archivedDataWithRootObject:value]];
     } else {
-        VREPLOG_ERROR(@"Can't make deepCopy of object %@, it not supporting NSCoding protocol.", value);
+        NSLog(@"Can't make deepCopy of object %@, it not supporting NSCoding protocol.", value);
     }
     return newValue;
 }
