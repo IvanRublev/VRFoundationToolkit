@@ -8,4 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  Inverts the comparison result
+ */
 NSComparisonResult NSComparisonInvertedResult(NSComparisonResult result);

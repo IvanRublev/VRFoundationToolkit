@@ -9,6 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface NSArray (VRArgument)
-- (void)passTo:(id)target selector:(SEL)selector;
-- (void)passToClass:(Class)aClass selector:(SEL)selector;
+- (void)passTo:(id)aTarget selector:(SEL)aSelector;
+- (void)passToClass:(Class)aClass selector:(SEL)aSelector;
 @end
