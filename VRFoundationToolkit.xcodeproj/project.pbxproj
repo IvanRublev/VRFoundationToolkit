@@ -135,7 +135,6 @@
 		AB352E1C18CCDBDD00F6C8B6 /* VREnumTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VREnumTests.m; sourceTree = "<group>"; };
 		AB3CA4A418B768EA0079964E /* libVRFoundationToolkit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libVRFoundationToolkit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CA4A718B768EA0079964E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		AB3CA4AB18B768EA0079964E /* VRFoundationToolkit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "VRFoundationToolkit-Prefix.pch"; sourceTree = "<group>"; };
 		AB3CA4AC18B768EA0079964E /* VRFoundationToolkit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRFoundationToolkit.h; sourceTree = "<group>"; };
 		AB3CA4B418B768EA0079964E /* VRFoundationToolkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VRFoundationToolkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB3CA4B518B768EA0079964E /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -326,7 +325,6 @@
 		AB3CA4AA18B768EA0079964E /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				AB3CA4AB18B768EA0079964E /* VRFoundationToolkit-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -720,7 +718,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\" ./VRFoundationToolkit/Requirements/**\"",
+					"./**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
@@ -759,7 +757,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"\" ./VRFoundationToolkit/Requirements/**\"",
+					"./**",
 				);
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = "";
@@ -774,8 +772,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/VRFoundationToolkit.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VRFoundationToolkit/VRFoundationToolkit-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "$(inherited)";
@@ -788,8 +784,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DSTROOT = /tmp/VRFoundationToolkit.dst;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VRFoundationToolkit/VRFoundationToolkit-Prefix.pch";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = "$(inherited)";
@@ -862,8 +856,6 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VRFoundationToolkit/VRFoundationToolkit-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -886,8 +878,6 @@
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "VRFoundationToolkit/VRFoundationToolkit-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				OTHER_LDFLAGS = "$(inherited)";

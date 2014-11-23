@@ -9,8 +9,7 @@
 #ifndef VRFoundationToolkit_VRLog_h
 #define VRFoundationToolkit_VRLog_h
 
-#import "metamacros.h"
-#import "EXTScope.h"
+#import <metamacros.h>
 
 #define VRYN(expr) ((expr)? @"YES" : @"NO") // For output bool value as string in console
 

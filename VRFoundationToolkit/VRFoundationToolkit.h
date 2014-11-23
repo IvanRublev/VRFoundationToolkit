@@ -7,15 +7,16 @@
 //
 
 /* VRFoundationToolkit 
- * This is a library of helper functions and categories for quicker operate on NSFoundation objects.
+ * Extends NSFoundation with categories, macros & classes. Effective Obj-C developer's mini-toolkit).
  * 
- * Project where you include following stuff needs -ObjC linker flag to link categories properly.
+ * The https://github.com/jspahrsummers/libextobjc v4.0.x is required for metamacros in VREnum.h. Besides, that lib is very usefull for @weakify @strongify and other usefulness.
+ * Project where you include the VRFoundationToolkit needs -ObjC linker flag to link categories properly.
  */
 
 #import <Foundation/Foundation.h>
 
 // Import Requirements
-#import "libextobjc.h" 
+#import <extobjc.h>
 
 // Routines
 #import "VRLog.h"

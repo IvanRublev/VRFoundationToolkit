@@ -22,7 +22,6 @@ NSString *const VRURLConnectionCheckerDefaultSiteToCheck = @"http://apple.com";
                     failure:(VRURLConnectionCheckerFailureBlock)failure
 {
     VRPRECONDITIONS_LOG_ERROR_ASSERT_RETURN(request, [[[NSRunLoop currentRunLoop] currentMode] isEqualToString:NSDefaultRunLoopMode]);
-
     VRURLConnectionChecker * checker = [VRURLConnectionChecker alloc];
     checker = [checker initWithRequest:request delegate:checker startImmediately:NO];
     checker.accessible = accessible;
