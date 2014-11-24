@@ -5,7 +5,6 @@ VRFoundationToolkit
 [![Version](https://img.shields.io/cocoapods/v/VRFoundationToolkit.svg?style=flat)](http://cocoadocs.org/docsets/VRFoundationToolkit)
 [![License](https://img.shields.io/cocoapods/l/VRFoundationToolkit.svg?style=flat)](http://cocoadocs.org/docsets/VRFoundationToolkit)
 
-
 This library extends [NSFoundation](https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/) with categories, macros & classes. Effective Obj-C developer's mini-toolkit) It can be used in iOS or OS X projects for faster coding.
 
 
