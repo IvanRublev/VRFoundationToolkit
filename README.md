@@ -1,194 +1,101 @@
 VRFoundationToolkit
 ===================
 
-This library contains custom classes, categories for extending [NSFoundation](https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/) and useful macros. It can be used in iOS or OS X projects for faster coding. Also this library is a base layer for several classes written by [IvanRublev](https://github.com/IvanRublev?tab=repositories).
+[![CI Status](http://img.shields.io/travis/Ivan Rublev/VRFoundationToolkit.svg?style=flat)](https://travis-ci.org/Ivan Rublev/VRFoundationToolkit)
+[![Version](https://img.shields.io/cocoapods/v/VRFoundationToolkit.svg?style=flat)](http://cocoadocs.org/docsets/VRFoundationToolkit)
+[![License](https://img.shields.io/cocoapods/l/VRFoundationToolkit.svg?style=flat)](http://cocoadocs.org/docsets/VRFoundationToolkit)
+[![Platform](https://img.shields.io/cocoapods/p/VRFoundationToolkit.svg?style=flat)](http://cocoadocs.org/docsets/VRFoundationToolkit)
 
-Supply
-------
+This library extends [NSFoundation](https://developer.apple.com/library/ios/documentation/cocoa/reference/foundation/) with categories, macros & classes. Effective Obj-C developer's mini-toolkit) It can be used in iOS or OS X projects for faster coding.
 
-This repository already includes [libextobjc][1] (via subtree) as requirement for some of macros from `VRLog.h` and `VREnum.h` that are build on top. So when you clone this repo you're got libextobjc also.
-That's gives all benefits of libextobjc like `@weakify`, `@strongify` directives to use with variables over blocks and many, many more. See [description][1] of that repo.  
 
-Thanks a lot [@jspahrsummers](https://github.com/jspahrsummers) and all contributors for such perfect [libextobjc][1] library.
+What's inside
+-------------
+
+### Categories
+
+* __NSArray+VRArgument__ - sequentially passes each element of array to provided selector of target object or class.
+* __NSArray+VRCheckMembers__ - checks if all members of array are of specified class.
+* __NSBundle+VRDisplayName__ - obtains localized display name of bundle with fallback to non-nil string precompiler constant if name is not accessible.
+* __NSDate+VRDurations__ - calculates how much days, hours, minutes between two dates. Returns end of day. Compare two dates by specified NSCalendarUnit units. Return NSDateComponents for specified NSCalendarUnit units. Returns default NSCalendar.
+* __NSFileManager+VRDocumentsDirectory__ - quick access for Documents directory and Temporary directory paths. Random file names generation. etc.
+* __NSMutableDictionary+VRExchangeKeys__ - exchanges keys in dictionary.
+* __NSObject+VRPropertiesProcessing__ - process object properties with blocks. Hash, equality & encode/decode by properties for any object.
+* __NSObject+VRProtocolConformation__ - checks if object/class responds to all selectors required by protocol. Useful as precondition check of object in delegate setter.
+* __NSString+VRmd5__ - MD5 hash on string.
+* __NSTimer+VRWithBlock__ - timer that executes block instead of selector.
+
+### Macros
+
+* __VREnumXXX__ - generates enums with utility functions. NSStringFromXXX returns enum constant by value. isValidXXX checks range of enum value.
+* __VRLOGxxx__ - multilevel logging & assertion macros. Could be connected to preferable logging system. VRPRECONDITIONxxx macros to implement light design by contract.
+* __VRKeyName__ - stringifyes expression to key for `-[NSCoder encodeObject:withKey:]`. Useful to make names via help of XCode autocompletion.
+* __VRSingleton__ - return singleton.
+* __VROBJCTYPExxx__ - returns Objective-C type string representation of the passed variable (or type). VRIS_TYPE_EQUAL_TO_TYPE(V1, V2) compares Objective-C types of two passed values/types.
+
+### Classes
+* __VRURLConnectionChecker__ - checks if default site or specified URL is accessible with completion and error blocks.
+
+### Functions
+* __NSComparisonInvertedResult__ - inverts the comparison result.
+* __VRCanPerform__ - checks if object conforms to protocol & responds to selector. Usefull for precondition check in delegate setters.
+
+
+Requirements
+------------
+
+iOS SDK 6.0+ and OSX SDK 10.8+ are required respectively. 
+
+[libextobjc](https://github.com/jspahrsummers/libextobjc.git) is required for metamacros in `VRLog.h` and `VREnum.h`.
+[MAObjCRuntime](https://github.com/mikeash/MAObjCRuntime.git) is required for VRProtocolConformation category of NSObject.
+
 
 Installation
 ------------
 
+### Using CocoaPods
+
+VRFoundationToolkit is available through [CocoaPods](http://cocoapods.org). Simply add the following line to your Podfile:
+
+    pod "VRFoundationToolkit"
+
+and run `pods update` or `pods install`.
+
+
+### Manually
+
+- Make Workspace for your project, if you havent do so, via Xcode menu File -> New -> Workspace. Make sure that your .xcworkspace file is on the same level as .xcodeproj of your project and that the last one is added to the Workspace.
+- Open the Workspace within Xcode.
 - Subtree this repository, for example to `Requirements` subdirectory in your project.
 ```
 git subtree add --prefix=Requirements/VRFoundationToolkit --squash https://github.com/IvanRublev/VRFoundationToolkit.git master
 ```
 
-- Drag & drop `VRFoundationToolkit.xcodeproj` in to your poject.
-- Add `-ObjC` to Other Linker Flags in project's Build Settings. And add `"./Requirements/**"` to Header Search Paths.
-- Add `VRFoundationToolkit` target (or `VRFoundationToolkitOSX` for OS X) in "Target Dependencies" section of "Build phases" tab of your project's target.
-- Link to `libVRFoundationToolkit.a` (or `libVRFoundationToolkitOSX.a` for OS X) in General tab of your project's target.
-- Add `#import "VRFoundationToolkit.h"` to YourProject-Prefix.pch. 
+- Subtree dependencies there as also.
 
-Now it's ready to use!
+```
+git subtree add --prefix=Requirements/libextobjc --squash https://github.com/jspahrsummers/libextobjc.git master
 
-Classes are included
---------------------
-#### VRURLConnectionChecker
+git subtree add --prefix=Requirements/MAObjCRuntime --squash https://github.com/mikeash/MAObjCRuntime.git master
+```
 
-Class that checks if default site or specified URL is accessible with completion and error blocks.
+- Drag & drop `VRFoundationToolkit.xcodeproj`, `extobjc.xcodeproj` & `MAObjCRuntime.xcodeproj` in to your workspace. 
+- Make sure that settings of `libextobjc (iOS)` and `MAObjCRuntime_iOS` targets of `extobjc` and `MAObjCRuntime.xcodeproj` projects respectively, are following: Architectures is set to `Standard architectures` and Base SDK is set to `Lastest iOS`.
+- Add `-ObjC` to Other Linker Flags in your project's Build Settings. And add `./Requirements/**` to Header Search Paths.
+- Add `libVRFoundationToolkit.a`, `libextobjc_iOS.a` & `libMAObjCRuntime_iOS.a` (or `VRFoundationToolkitOSX`, `libextobjc_OSX.a` & `libMAObjCRuntime.a` for OS X) in "Link Binary With Libraries" section of "Build phases" tab of your project's target.
+- Add `#import <VRFoundationToolkit/VRFoundationToolkit.h>` to YourProject-Prefix.pch or where you want to use it.
 
-	+ (void)checkURLWithRequest:(NSURLRequest *)request
-	                 accessible:(VRURLConnectionCheckerAccessibleBlock)accessible
-	                    failure:(VRURLConnectionCheckerFailureBlock)failure;
-	
-	...
-	
-	+ (void)checkDefaultSiteIsAccessible:(VRURLConnectionCheckerAccessibleBlock)accessible
-	                             failure:(VRURLConnectionCheckerFailureBlock)failure;
-
-Categories are included
------------------------
-
-#### NSFileManager+VRDocumentsDirectory
-
-Returns Documents directory and Temporary directory for app. Removing items if exists only. Random file names generation.
-
-	- (NSString*)temporaryDirectory;
-	- (NSString*)documentsDirectory;
-	- (NSString*)documentsDirectoryAddingPath:(NSString*)relativePath;
-	- (BOOL)removeItemAtPathIfExists:(NSString *)path error:(NSError *__autoreleasing *)error;
-	+ (NSString*)randomFileNameOfType:(NSString *)type;
-	+ (NSString*)randomFileNameOfLength:(NSUInteger)length type:(NSString *)type;
-
-#### NSDate+VRDurations
-
-Calculates how much days, hours, minutes between two dates.
-
-	-(NSInteger)daysUntilDate:(NSDate *)nextDate;
-	-(NSInteger)hoursUntilDate:(NSDate *)nextDate;
-	-(NSInteger)minutesUntilDate:(NSDate *)nextDate;
-	-(NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units untilDate:(NSDate *)nextDate;
-
-#### NSString+VRmd5
-
-MD5 hash on string.
-
-	- (NSString*)md5;
-
-#### NSObject+VRPropertiesProcessing
-
-Processing of every property of any object via block. Hash, equality, NSCoding universal methods for any object. 
-
-	- (void)enumeratePropertiesUsingBlock:(void (^)(NSString * propertyName, id propertyValue, __unsafe_unretained Class valuesClass))block;
-	
-	- (NSString *)descriptionWithProperties;
-	- (NSString *)descriptionWithPropertiesTypes;
-	
-	- (BOOL)isEqualByProperties:(id)object; // If object is of different class then returns NO. It's faster then [-hashByProperties]
-	- (NSUInteger)hashByProperties;
-	
-	- (id)deepCopyPropertiesToNewInstanceWithZone:(NSZone *)zone;
-	- (void)deepCopyPropertiesTo:(id)targetObject;
-	
-	- (NSString *)keyForPropertyName:(NSString *)propertyName;
-	- (void)encodePropertiesWithCoder:(NSCoder *)aCoder; // For fast implementing of NSCoding protocol in subclass of NSObject.
-	- (id)initPropertiesWithCoder:(NSCoder *)aDecoder;
-
-#### NSArray+VRCheckMembers
-
-Checks if all members of array of specified class.
-
-	- (BOOL)allMembersAreKindOfClass:(Class)oneTestClass orClass:(Class)otherTestClass;
-	- (BOOL)allMembersAreKindOfClass:(Class)oneTestClass orClass:(Class)otherTestClass options:(NSEnumerationOptions)options;
-	- (BOOL)allMembersAreKindOfClass:(Class)testClass;
-	- (BOOL)allMembersAreKindOfClass:(Class)testClass options:(NSEnumerationOptions)options;
+Now it's ready to use, build & run!
 
 
-#### NSMutableDictionary+VRExchangeKeys
+Author
+------
 
-Exchanges keys in dictionary.
+Ivan Rublev, ivan@ivanrublev.me
 
-	- (void)exchangeKey:(id<NSCopying, NSObject>)aKey withKey:(id<NSCopying, NSObject>)aNewKey;
-
-#### NSBundle+VRDisplayName.h
-
-To obtain localized display name of bundle with fallback to non-nil string if name is not accessible.
-
-	+ (NSString *)localizedDisplayName;
-
-To make fallback work, please, add `kPRODUCT_NAME="@\"$(PRODUCT_NAME)\""` to preprocessor macros section of your project to both `Debug` and `Relese` configurations.
-
-Macros are included
--------------------
-
-### VRLog.h
-
-#### Logging & assertion macros
-
-	VRLOG_xxx(...)
-
-If KSCrashLib is in project, then maps to KSLOG_xxx macros automaticaly.
-
-Also contains `VRLOG_ERROR_ASSERT_xxxx` macros that asserts just after logging error with same message.
-
-#### Just assertion
-
-	VRASSERT(CONDITION)
-
-Asserts when condition is false.
-	
-#### Precondition checking
-
-	VRPRECONDITIONS_LOG_ERROR_ASSERT_RETURN(...)
-
-Asserts when one of passed condition's is false, inclides that condition in assertion message.
-
-### VREnum.h
-
-#### Definition of enums types and utilities for them
-
-	VRENUM_TYPEDEF_AND_UTILS(tdeName, intType, const1, const2, ...)
-
-Generates `enum` with specified `tdeName` for `typedef`, `intType` for integer type and provided constants.
-
-Generates following inline functions:
-
-* `BOOL isValidNAME(intType value)` returns YES if specified value matches one of defined enum constants
-	  
-* `NSStringFromNAME(intType value)` returns string representation of value if it belongs to enum or `@"undefined (value)"`.
-
-Constants can be only simple text CONSTA, CONSTB etc. Up to 18. 
-Arbitrary number assignments to constants is not supported. Preprocessor doesn't support regexps :(((
-
-`VRENUM_TYPEDEF(tdeName, intType, ...)` same macro but without utility functions.
-
-### NSCoder+VRKeyName.h
-
-#### Unifyed Key names
-	
-	VRKeyName(...)
-
-Creates key name for `-[NSCoder encodeObject:withKey:]`.
-
-You pass not string but language expression that will be stringifyed. Usefull to cheating with code completion feature in Xcode.
-
-### VRSingleton.h
-
-#### One string singleton
-
-	VRRETURN_SINGLETON
-
-To be used for realization of `+sharedInstance` class method. Returns singleton of current class as reccomended by Apple.
-
-### VRProtocolConformation.h
-
-#### Check if object can perform selector an conforms to protocol simultaneously
-
-	BOOL VRCanPerform(id object, SEL selector, Protocol *protocol);
-
-Returns YES if `object` responses to `selector` and conforms to `protocol` are passed.
-
-Also inclides macro `VRPerformSelectorUnderProtocolIfPossible(aObject, aSelector, aProtocol)` that will send message to given object with specified selector without parameters if `VRCanPerform` function returns YES. 
 
 License
 -------
 
-MIT. Copyright (c) 2013 Ivan Rublev, ivan@ivanrublev.me 
+VRFoundationToolkit is available under the MIT license. See the LICENSE file for more info.
 
-[1]: https://github.com/jspahrsummers/libextobjc.git

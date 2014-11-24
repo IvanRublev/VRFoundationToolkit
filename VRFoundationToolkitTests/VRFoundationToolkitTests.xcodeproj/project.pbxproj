@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AB09E6921A21D3A0008A3D6B /* NSArray+VRArgumentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E6841A21D3A0008A3D6B /* NSArray+VRArgumentTest.m */; };
+		AB09E6931A21D3A0008A3D6B /* NSObject+VRPropertiesProcessingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E6851A21D3A0008A3D6B /* NSObject+VRPropertiesProcessingTests.m */; };
+		AB09E6941A21D3A0008A3D6B /* VREnumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E6861A21D3A0008A3D6B /* VREnumTests.m */; };
+		AB09E6951A21D3A0008A3D6B /* VRLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E6871A21D3A0008A3D6B /* VRLogTests.m */; };
+		AB09E6961A21D3A0008A3D6B /* VRPPMyClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E6891A21D3A0008A3D6B /* VRPPMyClass.m */; };
+		AB09E6971A21D3A0008A3D6B /* VRPPMyClassConditionalProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E68B1A21D3A0008A3D6B /* VRPPMyClassConditionalProperties.m */; };
+		AB09E6981A21D3A0008A3D6B /* VRPPMyClassWithStructProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E68D1A21D3A0008A3D6B /* VRPPMyClassWithStructProperty.m */; };
+		AB09E6991A21D3A0008A3D6B /* VRPPMySuperClass.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E68F1A21D3A0008A3D6B /* VRPPMySuperClass.m */; };
+		AB09E69A1A21D3A0008A3D6B /* VRProtocolConformationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E6901A21D3A0008A3D6B /* VRProtocolConformationTests.m */; };
+		AB09E69B1A21D3A0008A3D6B /* VRTypeOfTests.m in Sources */ = {isa = PBXBuildFile; fileRef = AB09E6911A21D3A0008A3D6B /* VRTypeOfTests.m */; };
+		DD8879F8E57890383F56DFF2 /* libPods-VRFoundationToolkitTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2695D6C607A05CDC6A02DC71 /* libPods-VRFoundationToolkitTests.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		257AC11069421580C60C3D60 /* Pods-VRFoundationToolkitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRFoundationToolkitTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VRFoundationToolkitTests/Pods-VRFoundationToolkitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2695D6C607A05CDC6A02DC71 /* libPods-VRFoundationToolkitTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-VRFoundationToolkitTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		651F79ED7BB2A41A549D0E85 /* Pods-VRFoundationToolkitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VRFoundationToolkitTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VRFoundationToolkitTests/Pods-VRFoundationToolkitTests.release.xcconfig"; sourceTree = "<group>"; };
+		AB09E67A1A21D1E5008A3D6B /* VRFoundationToolkitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VRFoundationToolkitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB09E67E1A21D1E5008A3D6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AB09E6841A21D3A0008A3D6B /* NSArray+VRArgumentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+VRArgumentTest.m"; sourceTree = "<group>"; };
+		AB09E6851A21D3A0008A3D6B /* NSObject+VRPropertiesProcessingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+VRPropertiesProcessingTests.m"; sourceTree = "<group>"; };
+		AB09E6861A21D3A0008A3D6B /* VREnumTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VREnumTests.m; sourceTree = "<group>"; };
+		AB09E6871A21D3A0008A3D6B /* VRLogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRLogTests.m; sourceTree = "<group>"; };
+		AB09E6881A21D3A0008A3D6B /* VRPPMyClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMyClass.h; sourceTree = "<group>"; };
+		AB09E6891A21D3A0008A3D6B /* VRPPMyClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMyClass.m; sourceTree = "<group>"; };
+		AB09E68A1A21D3A0008A3D6B /* VRPPMyClassConditionalProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMyClassConditionalProperties.h; sourceTree = "<group>"; };
+		AB09E68B1A21D3A0008A3D6B /* VRPPMyClassConditionalProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMyClassConditionalProperties.m; sourceTree = "<group>"; };
+		AB09E68C1A21D3A0008A3D6B /* VRPPMyClassWithStructProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMyClassWithStructProperty.h; sourceTree = "<group>"; };
+		AB09E68D1A21D3A0008A3D6B /* VRPPMyClassWithStructProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMyClassWithStructProperty.m; sourceTree = "<group>"; };
+		AB09E68E1A21D3A0008A3D6B /* VRPPMySuperClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRPPMySuperClass.h; sourceTree = "<group>"; };
+		AB09E68F1A21D3A0008A3D6B /* VRPPMySuperClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRPPMySuperClass.m; sourceTree = "<group>"; };
+		AB09E6901A21D3A0008A3D6B /* VRProtocolConformationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRProtocolConformationTests.m; sourceTree = "<group>"; };
+		AB09E6911A21D3A0008A3D6B /* VRTypeOfTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRTypeOfTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AB09E6771A21D1E5008A3D6B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DD8879F8E57890383F56DFF2 /* libPods-VRFoundationToolkitTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AB09E66F1A21D1BE008A3D6B = {
+			isa = PBXGroup;
+			children = (
+				AB09E67C1A21D1E5008A3D6B /* VRFoundationToolkitTests */,
+				AB09E67B1A21D1E5008A3D6B /* Products */,
+				EFC4EF2CBA121DDD739F87DE /* Pods */,
+				F4BAC0B886D17BB84BFF34FF /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AB09E67B1A21D1E5008A3D6B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AB09E67A1A21D1E5008A3D6B /* VRFoundationToolkitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AB09E67C1A21D1E5008A3D6B /* VRFoundationToolkitTests */ = {
+			isa = PBXGroup;
+			children = (
+				AB09E6841A21D3A0008A3D6B /* NSArray+VRArgumentTest.m */,
+				AB09E6851A21D3A0008A3D6B /* NSObject+VRPropertiesProcessingTests.m */,
+				AB09E6861A21D3A0008A3D6B /* VREnumTests.m */,
+				AB09E6871A21D3A0008A3D6B /* VRLogTests.m */,
+				AB09E6881A21D3A0008A3D6B /* VRPPMyClass.h */,
+				AB09E6891A21D3A0008A3D6B /* VRPPMyClass.m */,
+				AB09E68A1A21D3A0008A3D6B /* VRPPMyClassConditionalProperties.h */,
+				AB09E68B1A21D3A0008A3D6B /* VRPPMyClassConditionalProperties.m */,
+				AB09E68C1A21D3A0008A3D6B /* VRPPMyClassWithStructProperty.h */,
+				AB09E68D1A21D3A0008A3D6B /* VRPPMyClassWithStructProperty.m */,
+				AB09E68E1A21D3A0008A3D6B /* VRPPMySuperClass.h */,
+				AB09E68F1A21D3A0008A3D6B /* VRPPMySuperClass.m */,
+				AB09E6901A21D3A0008A3D6B /* VRProtocolConformationTests.m */,
+				AB09E6911A21D3A0008A3D6B /* VRTypeOfTests.m */,
+				AB09E67D1A21D1E5008A3D6B /* Supporting Files */,
+			);
+			path = VRFoundationToolkitTests;
+			sourceTree = "<group>";
+		};
+		AB09E67D1A21D1E5008A3D6B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				AB09E67E1A21D1E5008A3D6B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EFC4EF2CBA121DDD739F87DE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				257AC11069421580C60C3D60 /* Pods-VRFoundationToolkitTests.debug.xcconfig */,
+				651F79ED7BB2A41A549D0E85 /* Pods-VRFoundationToolkitTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		F4BAC0B886D17BB84BFF34FF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2695D6C607A05CDC6A02DC71 /* libPods-VRFoundationToolkitTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AB09E6791A21D1E5008A3D6B /* VRFoundationToolkitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB09E6811A21D1E5008A3D6B /* Build configuration list for PBXNativeTarget "VRFoundationToolkitTests" */;
+			buildPhases = (
+				1484A6CFDE5158DD48D599B3 /* Check Pods Manifest.lock */,
+				AB09E6761A21D1E5008A3D6B /* Sources */,
+				AB09E6771A21D1E5008A3D6B /* Frameworks */,
+				AB09E6781A21D1E5008A3D6B /* Resources */,
+				AB3FC43864803BCCA88B338D /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VRFoundationToolkitTests;
+			productName = VRFoundationToolkitTests;
+			productReference = AB09E67A1A21D1E5008A3D6B /* VRFoundationToolkitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AB09E6701A21D1BE008A3D6B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				TargetAttributes = {
+					AB09E6791A21D1E5008A3D6B = {
+						CreatedOnToolsVersion = 6.1;
+					};
+				};
+			};
+			buildConfigurationList = AB09E6731A21D1BE008A3D6B /* Build configuration list for PBXProject "VRFoundationToolkitTests" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = AB09E66F1A21D1BE008A3D6B;
+			productRefGroup = AB09E67B1A21D1E5008A3D6B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AB09E6791A21D1E5008A3D6B /* VRFoundationToolkitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AB09E6781A21D1E5008A3D6B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1484A6CFDE5158DD48D599B3 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AB3FC43864803BCCA88B338D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VRFoundationToolkitTests/Pods-VRFoundationToolkitTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AB09E6761A21D1E5008A3D6B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AB09E6991A21D3A0008A3D6B /* VRPPMySuperClass.m in Sources */,
+				AB09E6951A21D3A0008A3D6B /* VRLogTests.m in Sources */,
+				AB09E69B1A21D3A0008A3D6B /* VRTypeOfTests.m in Sources */,
+				AB09E6941A21D3A0008A3D6B /* VREnumTests.m in Sources */,
+				AB09E69A1A21D3A0008A3D6B /* VRProtocolConformationTests.m in Sources */,
+				AB09E6981A21D3A0008A3D6B /* VRPPMyClassWithStructProperty.m in Sources */,
+				AB09E6961A21D3A0008A3D6B /* VRPPMyClass.m in Sources */,
+				AB09E6921A21D3A0008A3D6B /* NSArray+VRArgumentTest.m in Sources */,
+				AB09E6971A21D3A0008A3D6B /* VRPPMyClassConditionalProperties.m in Sources */,
+				AB09E6931A21D3A0008A3D6B /* NSObject+VRPropertiesProcessingTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		AB09E6741A21D1BE008A3D6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Debug;
+		};
+		AB09E6751A21D1BE008A3D6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					"./**",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+			};
+			name = Release;
+		};
+		AB09E6821A21D1E5008A3D6B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 257AC11069421580C60C3D60 /* Pods-VRFoundationToolkitTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = VRFoundationToolkitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		AB09E6831A21D1E5008A3D6B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 651F79ED7BB2A41A549D0E85 /* Pods-VRFoundationToolkitTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = VRFoundationToolkitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AB09E6731A21D1BE008A3D6B /* Build configuration list for PBXProject "VRFoundationToolkitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB09E6741A21D1BE008A3D6B /* Debug */,
+				AB09E6751A21D1BE008A3D6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB09E6811A21D1E5008A3D6B /* Build configuration list for PBXNativeTarget "VRFoundationToolkitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB09E6821A21D1E5008A3D6B /* Debug */,
+				AB09E6831A21D1E5008A3D6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AB09E6701A21D1BE008A3D6B /* Project object */;
+}

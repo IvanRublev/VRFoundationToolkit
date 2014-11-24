@@ -1,0 +1,79 @@
+PODS:
+  - Expecta (0.3.1)
+  - libextobjc (0.4.1):
+    - libextobjc/EXTADT (= 0.4.1)
+    - libextobjc/EXTConcreteProtocol (= 0.4.1)
+    - libextobjc/EXTKeyPathCoding (= 0.4.1)
+    - libextobjc/EXTNil (= 0.4.1)
+    - libextobjc/EXTSafeCategory (= 0.4.1)
+    - libextobjc/EXTScope (= 0.4.1)
+    - libextobjc/EXTSelectorChecking (= 0.4.1)
+    - libextobjc/EXTSynthesize (= 0.4.1)
+    - libextobjc/NSInvocation+EXT (= 0.4.1)
+    - libextobjc/NSMethodSignature+EXT (= 0.4.1)
+    - libextobjc/RuntimeExtensions (= 0.4.1)
+    - libextobjc/UmbrellaHeader (= 0.4.1)
+  - libextobjc/EXTADT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTConcreteProtocol (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTKeyPathCoding (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTNil (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSafeCategory (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTScope (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSelectorChecking (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/EXTSynthesize (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSInvocation+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/NSMethodSignature+EXT (0.4.1):
+    - libextobjc/RuntimeExtensions
+  - libextobjc/RuntimeExtensions (0.4.1)
+  - libextobjc/UmbrellaHeader (0.4.1)
+  - MAObjCRuntime (0.0.1)
+  - Specta (0.2.1)
+  - VRFoundationToolkit (0.1.1):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
+    - VRFoundationToolkit/ConnectionChecker (= 0.1.1)
+    - VRFoundationToolkit/LogAndPreconditionCheck (= 0.1.1)
+    - VRFoundationToolkit/NSArray+VRArgument (= 0.1.1)
+    - VRFoundationToolkit/PropertiesProcessing (= 0.1.1)
+  - VRFoundationToolkit/ConnectionChecker (0.1.1):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
+    - VRFoundationToolkit/LogAndPreconditionCheck
+  - VRFoundationToolkit/LogAndPreconditionCheck (0.1.1):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
+  - VRFoundationToolkit/NSArray+VRArgument (0.1.1):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
+    - VRFoundationToolkit/LogAndPreconditionCheck
+  - VRFoundationToolkit/PropertiesProcessing (0.1.1):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
+    - VRFoundationToolkit/LogAndPreconditionCheck
+
+DEPENDENCIES:
+  - Expecta
+  - Specta (~> 0.2.1)
+  - VRFoundationToolkit (from `../`)
+
+EXTERNAL SOURCES:
+  VRFoundationToolkit:
+    :path: ../
+
+SPEC CHECKSUMS:
+  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  libextobjc: d6146fce3ebea986b7f75fcb4c967639200b88b0
+  MAObjCRuntime: 9e99082c438f06c209203dbd77083cc308d9216a
+  Specta: 9141310f46b1f68b676650ff2854e1ed0b74163a
+  VRFoundationToolkit: 26e47c7281436f27d3843e09ec6dba16be960773
+
+COCOAPODS: 0.35.0

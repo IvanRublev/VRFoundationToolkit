@@ -1,0 +1,5 @@
+#include "Pods-VRFoundationToolkitTests-VRFoundationToolkit.xcconfig"
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Build" "${PODS_ROOT}/Headers/Build/VRFoundationToolkit" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Expecta" "${PODS_ROOT}/Headers/Public/MAObjCRuntime" "${PODS_ROOT}/Headers/Public/Specta" "${PODS_ROOT}/Headers/Public/VRFoundationToolkit" "${PODS_ROOT}/Headers/Public/libextobjc"
+OTHER_LDFLAGS = ${PODS_VRFOUNDATIONTOOLKITTESTS_VRFOUNDATIONTOOLKIT_OTHER_LDFLAGS} -ObjC
+PODS_ROOT = ${SRCROOT}
