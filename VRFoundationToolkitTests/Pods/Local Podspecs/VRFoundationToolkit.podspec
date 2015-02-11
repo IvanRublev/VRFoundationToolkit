@@ -22,6 +22,7 @@ Pod::Spec.new do |s|
                        * __NSFileManager+VRDocumentsDirectory__ - quick access for Documents directory and Temporary directory paths. Random file names generation. etc.
                        * __NSMutableDictionary+VRExchangeKeys__ - exchanges keys in dictionary.
                        * __NSObject+VRPropertiesProcessing__ - process object properties with blocks. Hash, equality & encode/decode by properties for any object.
+                       * __NSObject+VRProtocolConformation__ - checks if object/class responds to all selectors required by protocol. Useful as precondition check of object in delegate setter.
                        * __NSString+VRmd5__ - MD5 hash on string.
                        * __NSTimer+VRWithBlock__ - timer that executes block instead of selector.
 

@@ -13,10 +13,12 @@
  */
 
 @interface NSObject (VRProtocolConformation)
-- (BOOL)respondsToSelectorsRequiredByProtocol:(Protocol *)theProtocol;
-+ (BOOL)respondsToSelectorsRequiredByProtocol:(Protocol *)theProtocol;
+- (BOOL)respondsToSelectorsRequiredByProtocol:(Protocol*)theProtocol;
++ (BOOL)instancesRespondToSelectorsRequiredByProtocol:(Protocol*)theProtocol;
++ (BOOL)respondsToSelectorsRequiredByProtocol:(Protocol*)theProtocol;
 @end
 
+FOUNDATION_EXPORT BOOL VRClassRespondsToSelectorsRequiredByProtocol(Class theClass, Protocol *theProtocol);
 FOUNDATION_EXPORT BOOL VRObjectRespondsToSelectorsRequiredByProtocol(id theObject, Protocol *theProtocol);
 FOUNDATION_EXPORT BOOL VRCanPerform(id theObject, SEL theSelector, Protocol *theProtocol);
 

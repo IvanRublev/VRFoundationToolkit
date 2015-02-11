@@ -145,14 +145,28 @@
 
 - (void)testVRObjectConformsToProtocol
 {
-    XCTAssertFalse([fullyImplementedObject respondsToSelectorsRequiredByProtocol:nil],          @"Must return NO");
-    XCTAssertFalse([[fullyImplementedObject class] respondsToSelectorsRequiredByProtocol:nil],  @"Must return NO");
+    XCTAssertFalse([fullyImplementedObject respondsToSelectorsRequiredByProtocol:nil],                  @"Must return NO");
+    XCTAssertFalse([[fullyImplementedObject class] instancesRespondToSelectorsRequiredByProtocol:nil],  @"Must return NO");
     
-    XCTAssertTrue([fullyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],       @"Must return YES");
-    XCTAssertTrue([fullyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyChildProtocol)],        @"Must return YES");
+    XCTAssertTrue([fullyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],                   @"Must return YES");
+    XCTAssertTrue([[fullyImplementedObject class] instancesRespondToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],   @"Must return YES");
+    XCTAssertTrue([fullyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyChildProtocol)],                    @"Must return YES");
+    XCTAssertTrue([[fullyImplementedObject class] instancesRespondToSelectorsRequiredByProtocol:@protocol(VRPCMyChildProtocol)],    @"Must return YES");
 
-    XCTAssertFalse([partialyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],   @"Must return NO");
-    XCTAssertTrue([partialyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyChildProtocol)],     @"Must return YES");
+    XCTAssertFalse([partialyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],                   @"Must return NO");
+    XCTAssertFalse([[partialyImplementedObject class] instancesRespondToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],   @"Must return NO");
+    XCTAssertFalse([partialyImplementedObject respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyChildProtocol)],                    @"Must return NO because incorporated protocol methods are not implemented");
+    XCTAssertFalse([[partialyImplementedObject class] instancesRespondToSelectorsRequiredByProtocol:@protocol(VRPCMyChildProtocol)],    @"Must return NO because incorporated protocol methods are not implemented");
+}
+
+- (void)testVRClassConformsToProtocol
+{
+    XCTAssertFalse([VRPCMyChildClass respondsToSelectorsRequiredByProtocol:nil],          @"Must return NO");
+    
+    XCTAssertTrue([VRPCMyChildClass respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],       @"Must return YES");
+    
+    XCTAssertFalse([VRPCMyPartialImplementedClass respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyParentProtocol)],   @"Must return NO");
+    XCTAssertFalse([VRPCMyPartialImplementedClass respondsToSelectorsRequiredByProtocol:@protocol(VRPCMyChildProtocol)],     @"Must return NO because incorporated protocol methods are not implemented");
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "VRProtocolConformation.h"
 #import <VRLog.h>
-#import <MAObjCRuntime/RTProtocol.h>
+#import "RTProtocol+VRMethods.h"
 #import <MAObjCRuntime/RTMethod.h>
 
 @implementation NSObject (VRProtocolConformation)
@@ -33,6 +33,18 @@
 }
 
 /**
+ *  Returns YES if class instances responds to selectors of methods required by specified protocol (optional methods aren't checked). It's usefull to check wheither the class contain protocol method bodies.
+ *
+ *  @param theProtocol - which required method selectors the object must response
+ *
+ *  @return YES if all methods required by protocol could be called on class instances.
+ */
++ (BOOL)instancesRespondToSelectorsRequiredByProtocol:(Protocol*)theProtocol
+{
+    return VRObjectRespondsToSelectorsRequiredByProtocol(self, theProtocol);
+}
+
+/**
  *  Returns YES if class responds to selectors of methods required by specified protocol (optional methods aren't checked). It's usefull to check wheither the class contain protocol method bodies.
  *
  *  @param theProtocol - which required method selectors the object must response
@@ -41,12 +53,45 @@
  */
 + (BOOL)respondsToSelectorsRequiredByProtocol:(Protocol *)theProtocol
 {
-    return VRObjectRespondsToSelectorsRequiredByProtocol(self, theProtocol);
+    return VRClassRespondsToSelectorsRequiredByProtocol(self, theProtocol);
 }
+
 @end
 
 /**
- *  VRObjectRespondsToSelectorsRequiredByProtocol - function returns YES if object responds to selectors of required methods of specified protocol (optional methods aren't checked). It's usefull to check wheither the object contain protocol method bodies.
+ *  VRClassRespondsToSelectorsRequiredByProtocol - function returns YES if a class responds to selectors of required methods of the specified protocol and its incorporations (optional methods aren't checked). It's usefull to check wheither the object contains protocol method bodies.
+ *
+ *  @param class    class to check for responding
+ *  @param protocol protocol which required methods selectors the class must response
+ *
+ *  @return YES if all methods could be called on provided class.
+ */
+FOUNDATION_EXPORT BOOL VRClassRespondsToSelectorsRequiredByProtocol(Class theClass, Protocol *theProtocol)
+{
+    theClass = [theClass class];
+    if (!theClass || !theProtocol ) {
+        return NO;
+    }
+    BOOL pass = YES;
+    if ([theClass conformsToProtocol:theProtocol]) {
+        RTProtocol* protocolObj = [RTProtocol protocolWithObjCProtocol:theProtocol];
+        NSSet* requiredClassSelectorsNames = [protocolObj requiredClassSelectorsNames];
+        
+        for (NSString* selectorName in requiredClassSelectorsNames) {
+            pass &= [theClass respondsToSelector:NSSelectorFromString(selectorName)];
+            if (!pass) {
+                VRLOG_ERROR(@"Class: %@ doesn't respond to %@ selector", theClass, selectorName);
+                break;
+            }
+        }
+    } else {
+        pass = NO;
+    }
+    return pass;
+}
+
+/**
+ *  VRObjectRespondsToSelectorsRequiredByProtocol - function returns YES if a object responds to selectors of required methods of the specified protocol and its incorporations (optional methods aren't checked). It's usefull to check wheither the object contain protocols method bodies.
  *  Can be used in delegate setter like following:
  * @code
     - (void)setDelegate:(id<MyProtocol>)delegate
@@ -67,12 +112,18 @@ FOUNDATION_EXPORT BOOL VRObjectRespondsToSelectorsRequiredByProtocol(id theObjec
     }
     BOOL pass = YES;
     if ([theObject conformsToProtocol:theProtocol]) {
-        RTProtocol * protocolObj = [RTProtocol protocolWithObjCProtocol:theProtocol];
-        NSArray *instanceMethods = [protocolObj methodsRequired:YES instance:YES];
-        for (RTMethod *methodObj in instanceMethods) {
-            pass &= [theObject respondsToSelector:methodObj.selector];
+        RTProtocol* protocolObj = [RTProtocol protocolWithObjCProtocol:theProtocol];
+        NSSet* requiredInstanceSelectorsNames = [protocolObj requiredInstanceSelectorsNames];
+        
+        BOOL isTestingClass = class_isMetaClass(object_getClass(theObject));
+        for (NSString* selectorName in requiredInstanceSelectorsNames) {
+            if (isTestingClass) {
+                pass &= [theObject instancesRespondToSelector:NSSelectorFromString(selectorName)];
+            } else {
+                pass &= [theObject respondsToSelector:NSSelectorFromString(selectorName)];
+            }
             if (!pass) {
-                VRLOG_ERROR(@"Object: %@ doesn't respond to: %@ selector", theObject, methodObj.selectorName);
+                VRLOG_ERROR(@"Object: %@ doesn't respond to %@ selector", theObject, selectorName);
                 break;
             }
         }

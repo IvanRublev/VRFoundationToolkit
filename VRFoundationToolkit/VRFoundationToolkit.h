@@ -24,6 +24,7 @@
 #import "VRTypeOf.h"
 #import "NSCoder+VRKeyName.h"
 #import "VRSingleton.h"
+#import "RTProtocol+VRMethods.h"
 #import "VRProtocolConformation.h"
 
 #import "NSFileManager+VRDocumentsDirectory.h"
@@ -32,6 +33,7 @@
 #import "NSObject+VRPropertiesProcessing.h"
 #import "NSArray+VRCheckMembers.h"
 #import "NSArray+VRArgument.h"
+#import "NSArray+VRIndexes.h"
 #import "NSMutableDictionary+VRExchangeKeys.h"
 #import "NSBundle+VRDisplayName.h"
 #import "VRURLConnectionChecker.h"
