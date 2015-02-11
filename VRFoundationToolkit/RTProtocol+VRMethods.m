@@ -12,6 +12,29 @@
 
 @implementation RTProtocol (VRMethods)
 #pragma mark -
+#pragma mark Class shortcuts
++ (NSSet*)classSelectorsNamesOfProtocol:(Protocol*)aProtocol
+{
+    return [[RTProtocol protocolWithObjCProtocol:aProtocol] classSelectorsNames];
+}
+
++ (NSSet*)instanceSelectorsNamesOfProtocol:(Protocol*)aProtocol
+{
+    return [[RTProtocol protocolWithObjCProtocol:aProtocol] instanceSelectorsNames];
+}
+
++ (NSSet*)requiredClassSelectorsNamesOfProtocol:(Protocol*)aProtocol
+{
+    return [[RTProtocol protocolWithObjCProtocol:aProtocol] requiredClassSelectorsNames];
+}
+
++ (NSSet*)requiredInstanceSelectorsNamesOfProtocol:(Protocol*)aProtocol
+{
+    return [[RTProtocol protocolWithObjCProtocol:aProtocol] requiredInstanceSelectorsNames];
+}
+
+
+#pragma mark -
 #pragma mark Selector names shared cache
 static NSMutableDictionary* rtProtocolSelectorsNamesSharedCache = nil;
 /**
@@ -52,7 +75,7 @@ static NSMutableDictionary* rtProtocolSelectorsNamesSharedCache = nil;
 
 
 #pragma mark -
-#pragma mark Public
+#pragma mark Public instance methods
 /**
  *  Returns all class selectors names described in the protocol and its adopted protocols (except NSObject protocol).
  *

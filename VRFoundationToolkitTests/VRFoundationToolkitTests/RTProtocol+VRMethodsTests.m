@@ -52,6 +52,8 @@
 - (void)testClassSelectorsNames {
     NSSet* classSelectorsNamesOfA = [aProtocol classSelectorsNames];
     NSSet* classSelectorsNamesOfB = [bProtocol classSelectorsNames];
+    XCTAssertTrue([classSelectorsNamesOfA isEqualToSet:[RTProtocol classSelectorsNamesOfProtocol:@protocol(protocolA)]]);
+    XCTAssertTrue([classSelectorsNamesOfB isEqualToSet:[RTProtocol classSelectorsNamesOfProtocol:@protocol(protocolB)]]);
     
     NSSet* aNames = [NSSet setWithArray:@[@"classMethodA", @"optionalClassMethodA"]];
     XCTAssertTrue([classSelectorsNamesOfA isEqualToSet:aNames]);
@@ -62,6 +64,8 @@
 - (void)testInstanceSelectorsNames {
     NSSet* instanceSelectorsNamesOfA = [aProtocol instanceSelectorsNames];
     NSSet* instanceSelectorsNamesOfB = [bProtocol instanceSelectorsNames];
+    XCTAssertTrue([instanceSelectorsNamesOfA isEqualToSet:[RTProtocol instanceSelectorsNamesOfProtocol:@protocol(protocolA)]]);
+    XCTAssertTrue([instanceSelectorsNamesOfB isEqualToSet:[RTProtocol instanceSelectorsNamesOfProtocol:@protocol(protocolB)]]);
     
     NSSet* aNames = [NSSet setWithArray:@[@"instanceMethodA", @"optionalInstanceMethodA"]];
     XCTAssertTrue([instanceSelectorsNamesOfA isEqualToSet:aNames]);
@@ -72,6 +76,8 @@
 - (void)testRequiredClassSelectorsNames {
     NSSet* classSelectorsNamesOfA = [aProtocol requiredClassSelectorsNames];
     NSSet* classSelectorsNamesOfB = [bProtocol requiredClassSelectorsNames];
+    XCTAssertTrue([classSelectorsNamesOfA isEqualToSet:[RTProtocol requiredClassSelectorsNamesOfProtocol:@protocol(protocolA)]]);
+    XCTAssertTrue([classSelectorsNamesOfB isEqualToSet:[RTProtocol requiredClassSelectorsNamesOfProtocol:@protocol(protocolB)]]);
     
     NSSet* aNames = [NSSet setWithArray:@[@"classMethodA"]];
     XCTAssertTrue([classSelectorsNamesOfA isEqualToSet:aNames]);
@@ -82,6 +88,8 @@
 - (void)testRequiredInstanceSelectorsNames {
     NSSet* instanceSelectorsNamesOfA = [aProtocol requiredInstanceSelectorsNames];
     NSSet* instanceSelectorsNamesOfB = [bProtocol requiredInstanceSelectorsNames];
+    XCTAssertTrue([instanceSelectorsNamesOfA isEqualToSet:[RTProtocol requiredInstanceSelectorsNamesOfProtocol:@protocol(protocolA)]]);
+    XCTAssertTrue([instanceSelectorsNamesOfB isEqualToSet:[RTProtocol requiredInstanceSelectorsNamesOfProtocol:@protocol(protocolB)]]);
     
     NSSet* aNames = [NSSet setWithArray:@[@"instanceMethodA"]];
     XCTAssertTrue([instanceSelectorsNamesOfA isEqualToSet:aNames]);

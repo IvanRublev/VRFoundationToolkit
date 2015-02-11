@@ -13,8 +13,14 @@
  */
 @interface RTProtocol (VRMethods)
 + (void)resetSelectorsNamesSharedCache;
++ (NSSet*)classSelectorsNamesOfProtocol:(Protocol*)aProtocol;
++ (NSSet*)instanceSelectorsNamesOfProtocol:(Protocol*)aProtocol;
++ (NSSet*)requiredClassSelectorsNamesOfProtocol:(Protocol*)aProtocol;
++ (NSSet*)requiredInstanceSelectorsNamesOfProtocol:(Protocol*)aProtocol;
+
 - (NSSet*)classSelectorsNames;
 - (NSSet*)instanceSelectorsNames;
 - (NSSet*)requiredClassSelectorsNames;
 - (NSSet*)requiredInstanceSelectorsNames;
+
 @end
