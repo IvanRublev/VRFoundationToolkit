@@ -5,7 +5,27 @@
 //  Copyright (c) 2013 Ivan Rublev http://ivanrublev.me . All rights reserved.
 //
 
+/* If you want to enable logging include the following directive #define VRPropertiesProcessingLogging
+ * If you include this as Cocoapod you can add the above directive to postinstall hook at the end of the Podfile as following:
+ post_install do |installer_representation|
+    installer_representation.project.targets.each do |target|
+        if target.name.end_with? '-VRFoundationToolkit'
+            target.build_configurations.each do |config|
+                puts "before: #{config} => #{config.build_settings['GCC_PREPROCESSOR_DEFINITIONS']}"
+                config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] ||= ['$(inherited)']
+                config.build_settings['GCC_PREPROCESSOR_DEFINITIONS'] << 'VRPropertiesProcessingLogging'
+                puts "after:  #{config} => #{config.build_settings['GCC_PREPROCESSOR_DEFINITIONS']}\n"
+            end
+        end
+    end
+ end
+*/
+
 #import "NSObject+VRPropertiesProcessing.h"
+#ifndef VRPropertiesProcessingLogging
+#undef VRLOG_TRACE
+#define VRLOG_TRACE VRLOG_NONE
+#endif
 #import "VRProtocolConformation.h"
 #import "VRLog.h"
 #import <objc/runtime.h>
