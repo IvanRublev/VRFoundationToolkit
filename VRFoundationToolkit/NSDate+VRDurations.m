@@ -19,22 +19,32 @@
     return [[[self class] defaultCalendar] dateFromComponents:allComponents];
 }
 
-- (NSInteger)daysUntilDate:(NSDate *)nextDate
+- (NSInteger)yearsUntilDate:(NSDate*)nextDate
+{
+    return [[self componentsWithUnits:NSYearCalendarUnit untilDate:nextDate] year];
+}
+
+- (NSInteger)monthsUntilDate:(NSDate*)nextDate
+{
+    return [[self componentsWithUnits:NSMonthCalendarUnit untilDate:nextDate] month];
+}
+
+- (NSInteger)daysUntilDate:(NSDate*)nextDate
 {
     return [[self componentsWithUnits:NSDayCalendarUnit untilDate:nextDate] day];
 }
 
-- (NSInteger)hoursUntilDate:(NSDate *)nextDate
+- (NSInteger)hoursUntilDate:(NSDate*)nextDate
 {
     return [[self componentsWithUnits:NSHourCalendarUnit untilDate:nextDate] hour];
 }
 
-- (NSInteger)minutesUntilDate:(NSDate *)nextDate
+- (NSInteger)minutesUntilDate:(NSDate*)nextDate
 {
     return [[self componentsWithUnits:NSMinuteCalendarUnit untilDate:nextDate] minute];
 }
 
-- (NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units untilDate:(NSDate *)nextDate
+- (NSDateComponents*)componentsWithUnits:(NSCalendarUnit)units untilDate:(NSDate*)nextDate
 {
     NSDate * date1 = self;
     NSDate * date2 = nextDate;
@@ -44,20 +54,20 @@
                          toDate:date2 options:0];
 }
 
-- (NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units
+- (NSDateComponents*)componentsWithUnits:(NSCalendarUnit)units
 {
-    NSDate * date1 = self;
-    NSCalendar *calendar = [[self class] defaultCalendar];
+    NSDate* date1 = self;
+    NSCalendar* calendar = [[self class] defaultCalendar];
     return [calendar components:units
                        fromDate:date1];
 }
 
--(BOOL)isEqualToDate:(NSDate *)nextDate byUnits:(NSCalendarUnit)units
+-(BOOL)isEqualToDate:(NSDate*)nextDate byUnits:(NSCalendarUnit)units
 {
     return [[self componentsWithUnits:units] isEqual:[nextDate componentsWithUnits:units]];
 }
 
-+ (NSCalendar *)defaultCalendar
++ (NSCalendar*)defaultCalendar
 {
     return [NSCalendar currentCalendar];
 }

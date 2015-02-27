@@ -11,29 +11,36 @@
 
 /** VRURLConnectionChecker checks for acessibility of URL without downloading data via blocks syntax.
  */
-
-extern NSString *const VRURLConnectionCheckerDefaultSiteToCheck;
+extern NSString*const VRURLConnectionCheckStartedNotification;
+extern NSString*const VRURLConnectionCheckEndedWithSuccessNotification;
+extern NSString*const VRURLConnectionCheckEndedWithFailureNotification;
 
 typedef void(^VRURLConnectionCheckerAccessibleBlock)(void);
 typedef void(^VRURLConnectionCheckerFailureBlock)(NSError * error);
 
 @interface VRURLConnectionChecker : NSURLConnection
 
-+ (void)checkURLWithRequest:(NSURLRequest *)request
++ (void)checkURLWithRequest:(NSURLRequest*)request
                  accessible:(VRURLConnectionCheckerAccessibleBlock)accessible
                     failure:(VRURLConnectionCheckerFailureBlock)failure;
 
-+ (void)checkURLWithString:(NSString *)urlString andTimeout:(NSTimeInterval)timeout
++ (void)checkURLWithString:(NSString*)urlString andTimeout:(NSTimeInterval)timeout
                 accessible:(VRURLConnectionCheckerAccessibleBlock)accessible
                    failure:(VRURLConnectionCheckerFailureBlock)failure;
 
-+ (void)checkURLWithString:(NSString *)urlString
++ (void)checkURLWithString:(NSString*)urlString
                 accessible:(VRURLConnectionCheckerAccessibleBlock)accessible
                    failure:(VRURLConnectionCheckerFailureBlock)failure;
 
 + (NSTimeInterval)defaultFailureTimeout;
++ (NSString*)defaultSiteToCheck;
 
 + (void)checkDefaultSiteIsAccessible:(VRURLConnectionCheckerAccessibleBlock)accessible
                              failure:(VRURLConnectionCheckerFailureBlock)failure;
+
+/**
+ *  Returns the URL that was checked.
+ */
+@property (nonatomic, readonly) NSURL* checkedURL;
 
 @end

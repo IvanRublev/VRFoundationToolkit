@@ -8,28 +8,33 @@
 
 #import "VRURLConnectionChecker.h"
 
-NSString *const VRURLConnectionCheckerDefaultSiteToCheck = @"http://apple.com";
+NSString*const VRURLConnectionCheckStartedNotification = @"VRURLConnectionCheckStartedNotification";
+NSString*const VRURLConnectionCheckEndedWithSuccessNotification = @"VRURLConnectionCheckEndedWithSuccessNotification";
+NSString*const VRURLConnectionCheckEndedWithFailureNotification = @"VRURLConnectionCheckEndedWithFailureNotification";
 
 @interface VRURLConnectionChecker () <NSURLConnectionDataDelegate>
 @property (nonatomic, copy) VRURLConnectionCheckerAccessibleBlock accessible;
 @property (nonatomic, copy) VRURLConnectionCheckerFailureBlock failure;
+@property (nonatomic) NSURL* checkedURL; // make writable
 @end
 
 @implementation VRURLConnectionChecker
 
-+ (void)checkURLWithRequest:(NSURLRequest *)request
++ (void)checkURLWithRequest:(NSURLRequest*)request
                  accessible:(VRURLConnectionCheckerAccessibleBlock)accessible
                     failure:(VRURLConnectionCheckerFailureBlock)failure
 {
     VRPRECONDITIONS_LOG_ERROR_ASSERT_RETURN(request, [[[NSRunLoop currentRunLoop] currentMode] isEqualToString:NSDefaultRunLoopMode]);
-    VRURLConnectionChecker * checker = [VRURLConnectionChecker alloc];
+    VRURLConnectionChecker* checker = [[self class] alloc];
     checker = [checker initWithRequest:request delegate:checker startImmediately:NO];
+    checker.checkedURL = [request.URL copy];
     checker.accessible = accessible;
     checker.failure = failure;
+    [[NSNotificationCenter defaultCenter] postNotificationName:VRURLConnectionCheckStartedNotification object:self];
     [checker start];
 }
 
-+ (void)checkURLWithString:(NSString *)urlString andTimeout:(NSTimeInterval)timeout
++ (void)checkURLWithString:(NSString*)urlString andTimeout:(NSTimeInterval)timeout
                 accessible:(VRURLConnectionCheckerAccessibleBlock)accessible
                    failure:(VRURLConnectionCheckerFailureBlock)failure
 {
@@ -50,7 +55,7 @@ NSString *const VRURLConnectionCheckerDefaultSiteToCheck = @"http://apple.com";
                               failure:failure];
 }
 
-+ (void)checkURLWithString:(NSString *)urlString accessible:(VRURLConnectionCheckerAccessibleBlock)accessible failure:(VRURLConnectionCheckerFailureBlock)failure
++ (void)checkURLWithString:(NSString*)urlString accessible:(VRURLConnectionCheckerAccessibleBlock)accessible failure:(VRURLConnectionCheckerFailureBlock)failure
 {
     [[self class] checkURLWithString:urlString
                           andTimeout:[[self class] defaultFailureTimeout]
@@ -63,9 +68,16 @@ NSString *const VRURLConnectionCheckerDefaultSiteToCheck = @"http://apple.com";
     return 10.0;
 }
 
++ (NSString*)defaultSiteToCheck
+{
+    return  @"http://apple.com";
+}
+
 + (void)checkDefaultSiteIsAccessible:(VRURLConnectionCheckerAccessibleBlock)accessible failure:(VRURLConnectionCheckerFailureBlock)failure
 {
-    [[self class] checkURLWithString:VRURLConnectionCheckerDefaultSiteToCheck
+    NSString* defaultSiteToCheck = [self defaultSiteToCheck];
+    VRPRECONDITIONS_LOG_ERROR_ASSERT_RETURN([defaultSiteToCheck length]);
+    [[self class] checkURLWithString:defaultSiteToCheck
                           accessible:accessible
                              failure:failure];
 }
@@ -78,6 +90,7 @@ NSString *const VRURLConnectionCheckerDefaultSiteToCheck = @"http://apple.com";
     if (self.accessible) {
         self.accessible();
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:VRURLConnectionCheckEndedWithSuccessNotification object:self];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
@@ -85,6 +98,7 @@ NSString *const VRURLConnectionCheckerDefaultSiteToCheck = @"http://apple.com";
     if (self.failure) {
         self.failure(error);
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:VRURLConnectionCheckEndedWithFailureNotification object:self];
 }
 
 @end

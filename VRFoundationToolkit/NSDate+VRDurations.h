@@ -12,13 +12,15 @@
 
 -(NSDate *)endOfDay;
 
--(NSInteger)daysUntilDate:(NSDate *)nextDate;
--(NSInteger)hoursUntilDate:(NSDate *)nextDate;
--(NSInteger)minutesUntilDate:(NSDate *)nextDate;
--(NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units untilDate:(NSDate *)nextDate;
--(NSDateComponents *)componentsWithUnits:(NSCalendarUnit)units;
--(BOOL)isEqualToDate:(NSDate *)nextDate byUnits:(NSCalendarUnit)units;
+-(NSInteger)yearsUntilDate:(NSDate*)nextDate;
+-(NSInteger)monthsUntilDate:(NSDate*)nextDate;
+-(NSInteger)daysUntilDate:(NSDate*)nextDate;
+-(NSInteger)hoursUntilDate:(NSDate*)nextDate;
+-(NSInteger)minutesUntilDate:(NSDate*)nextDate;
+-(NSDateComponents*)componentsWithUnits:(NSCalendarUnit)units untilDate:(NSDate*)nextDate;
+-(NSDateComponents*)componentsWithUnits:(NSCalendarUnit)units;
+-(BOOL)isEqualToDate:(NSDate*)nextDate byUnits:(NSCalendarUnit)units;
 
-+ (NSCalendar *)defaultCalendar;
++ (NSCalendar*)defaultCalendar;
 
 @end
