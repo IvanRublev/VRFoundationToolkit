@@ -26,6 +26,7 @@
 #import "VRSingleton.h"
 #import "RTProtocol+VRMethods.h"
 #import "VRProtocolConformation.h"
+#import "VRBundledName.h"
 
 #import "NSFileManager+VRDocumentsDirectory.h"
 #import "NSDate+VRDurations.h"
@@ -38,4 +39,5 @@
 #import "NSBundle+VRDisplayName.h"
 #import "VRURLConnectionChecker.h"
 #import "NSTimer+VRWithBlock.h"
+#import "NSOperationQueue+VRNamedBlock.h"
 #import "VRComparison.h"

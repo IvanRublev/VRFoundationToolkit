@@ -12,7 +12,7 @@
 
 - (NSIndexSet*)indexesOfObjectsFromArray:(NSArray*)theArray
 {
-    if (!self.count) {
+    if (!self.count || !theArray.count) {
         return [NSIndexSet indexSet];
     }
     NSIndexSet* indexes = [self indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
