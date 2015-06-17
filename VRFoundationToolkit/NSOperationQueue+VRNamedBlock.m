@@ -15,7 +15,7 @@
         return;
     }
     NSOperation* blockOperation = [NSBlockOperation blockOperationWithBlock:block];
-    if (operationName.length) {
+    if (operationName.length && [[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         blockOperation.name = operationName;
     }
     [self addOperation:blockOperation];
