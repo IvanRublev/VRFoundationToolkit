@@ -41,3 +41,4 @@
 #import "NSTimer+VRWithBlock.h"
 #import "NSOperationQueue+VRNamedBlock.h"
 #import "VRComparison.h"
+#import "VRRandom.h"

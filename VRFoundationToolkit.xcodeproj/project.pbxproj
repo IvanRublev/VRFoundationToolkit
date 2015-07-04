@@ -87,6 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AB00F0611B47C60B0029EE47 /* VRRandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VRRandom.h; sourceTree = "<group>"; };
 		AB09E69C1A21EA51008A3D6B /* VRURLConnectionChecker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VRURLConnectionChecker.h; path = VRURLConnectionChecker/VRURLConnectionChecker.h; sourceTree = "<group>"; };
 		AB09E69D1A21EA51008A3D6B /* VRURLConnectionChecker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VRURLConnectionChecker.m; path = VRURLConnectionChecker/VRURLConnectionChecker.m; sourceTree = "<group>"; };
 		AB09E6A11A21EA6A008A3D6B /* VRProtocolConformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VRProtocolConformation.h; path = LogAndPreconditionCheck/VRProtocolConformation.h; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 				AB3CA4E318B7714A0079964E /* NSCoder+VRKeyName.h */,
 				ABC9BF2818B9A0F800C6566F /* VRSingleton.h */,
 				AB191D8E1AF25B1A00848990 /* VRBundledName.h */,
+				AB00F0611B47C60B0029EE47 /* VRRandom.h */,
 			);
 			name = "Functions and categories";
 			sourceTree = "<group>";
