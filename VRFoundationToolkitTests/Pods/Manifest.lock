@@ -1,5 +1,5 @@
 PODS:
-  - Expecta (1.0.0)
+  - Expecta (1.0.5)
   - libextobjc (0.4.1):
     - libextobjc/EXTADT (= 0.4.1)
     - libextobjc/EXTConcreteProtocol (= 0.4.1)
@@ -37,28 +37,33 @@ PODS:
   - libextobjc/UmbrellaHeader (0.4.1)
   - MAObjCRuntime (0.0.1)
   - Specta (0.2.1)
-  - VRFoundationToolkit (0.1.1):
+  - VRFoundationToolkit (0.1.2):
     - libextobjc (~> 0.4)
     - MAObjCRuntime
-    - VRFoundationToolkit/ConnectionChecker (= 0.1.1)
-    - VRFoundationToolkit/LogAndPreconditionCheck (= 0.1.1)
-    - VRFoundationToolkit/NSArray+VRArgument (= 0.1.1)
-    - VRFoundationToolkit/PropertiesProcessing (= 0.1.1)
-  - VRFoundationToolkit/ConnectionChecker (0.1.1):
-    - libextobjc (~> 0.4)
-    - MAObjCRuntime
-    - VRFoundationToolkit/LogAndPreconditionCheck
-  - VRFoundationToolkit/LogAndPreconditionCheck (0.1.1):
-    - libextobjc (~> 0.4)
-    - MAObjCRuntime
-  - VRFoundationToolkit/NSArray+VRArgument (0.1.1):
+    - VRFoundationToolkit/ConnectionChecker (= 0.1.2)
+    - VRFoundationToolkit/LogAndPreconditionCheck (= 0.1.2)
+    - VRFoundationToolkit/NSArray+VRArgument (= 0.1.2)
+    - VRFoundationToolkit/PropertiesProcessing (= 0.1.2)
+    - VRFoundationToolkit/RTProtocol+VRMethods (= 0.1.2)
+  - VRFoundationToolkit/ConnectionChecker (0.1.2):
     - libextobjc (~> 0.4)
     - MAObjCRuntime
     - VRFoundationToolkit/LogAndPreconditionCheck
-  - VRFoundationToolkit/PropertiesProcessing (0.1.1):
+  - VRFoundationToolkit/LogAndPreconditionCheck (0.1.2):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
+    - VRFoundationToolkit/RTProtocol+VRMethods
+  - VRFoundationToolkit/NSArray+VRArgument (0.1.2):
     - libextobjc (~> 0.4)
     - MAObjCRuntime
     - VRFoundationToolkit/LogAndPreconditionCheck
+  - VRFoundationToolkit/PropertiesProcessing (0.1.2):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
+    - VRFoundationToolkit/LogAndPreconditionCheck
+  - VRFoundationToolkit/RTProtocol+VRMethods (0.1.2):
+    - libextobjc (~> 0.4)
+    - MAObjCRuntime
 
 DEPENDENCIES:
   - Expecta
@@ -70,10 +75,10 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Expecta: 32604574add2c46a36f8d2f716b6c5736eb75024
+  Expecta: e1c022fcd33910b6be89c291d2775b3fe27a89fe
   libextobjc: a650fc1bf489a3d3a9bc2e621efa3e1006fc5471
   MAObjCRuntime: a6a1d95acbfa3784d66cb35bd42904e47943b488
   Specta: 15a276a6343867b426d5ed135d5aa4d04123a573
-  VRFoundationToolkit: 54cae2deb6a90fd3ec2880350c794800301a6bcf
+  VRFoundationToolkit: 94b0a94b7d80fb32d95b883823bbeef8d8fa1c09
 
-COCOAPODS: 0.35.0
+COCOAPODS: 0.38.2

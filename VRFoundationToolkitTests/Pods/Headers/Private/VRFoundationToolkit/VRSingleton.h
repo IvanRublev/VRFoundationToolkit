@@ -1,0 +1,1 @@
+../../../../../VRFoundationToolkit/VRSingleton.h

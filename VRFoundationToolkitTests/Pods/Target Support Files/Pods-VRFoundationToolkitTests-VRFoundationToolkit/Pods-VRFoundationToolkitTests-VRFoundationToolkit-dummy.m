@@ -1,5 +1,0 @@
-#import <Foundation/Foundation.h>
-@interface PodsDummy_Pods_VRFoundationToolkitTests_VRFoundationToolkit : NSObject
-@end
-@implementation PodsDummy_Pods_VRFoundationToolkitTests_VRFoundationToolkit
-@end

@@ -15,14 +15,17 @@ What's inside
 
 * __NSArray+VRArgument__ - sequentially passes each element of array to provided selector of target object or class.
 * __NSArray+VRCheckMembers__ - checks if all members of array are of specified class.
+* __NSArray+VRIndexes__ - returns indexes set of passed objects. 
 * __NSBundle+VRDisplayName__ - obtains localized display name of bundle with fallback to non-nil string precompiler constant if name is not accessible.
 * __NSDate+VRDurations__ - calculates how much days, hours, minutes between two dates. Returns end of day. Compare two dates by specified NSCalendarUnit units. Return NSDateComponents for specified NSCalendarUnit units. Returns default NSCalendar.
 * __NSFileManager+VRDocumentsDirectory__ - quick access for Documents directory and Temporary directory paths. Random file names generation. etc.
 * __NSMutableDictionary+VRExchangeKeys__ - exchanges keys in dictionary.
 * __NSObject+VRPropertiesProcessing__ - process object properties with blocks. Hash, equality & encode/decode by properties for any object.
 * __NSObject+VRProtocolConformation__ - checks if object/class responds to all selectors required by protocol. Useful as precondition check of object in delegate setter.
+* __RTProtocol+VRMethods__ - returns methods defined in protocol.
 * __NSString+VRmd5__ - MD5 hash on string.
 * __NSTimer+VRWithBlock__ - timer that executes block instead of selector.
+* __NSOperationQueue+VRNamedBlock__ - add named block operation to queue.
 
 ### Macros
 
@@ -31,6 +34,8 @@ What's inside
 * __VRKeyName__ - stringifyes expression to key for `-[NSCoder encodeObject:withKey:]`. Useful to make names via help of XCode autocompletion.
 * __VRSingleton__ - return singleton.
 * __VROBJCTYPExxx__ - returns Objective-C type string representation of the passed variable (or type). VRIS_TYPE_EQUAL_TO_TYPE(V1, V2) compares Objective-C types of two passed values/types.
+* __VRBundledName__ - returns NSString with reverse dns bundle name followed by passed NAME at the end of the string.
+* __VRRandom__ - returns random float value calculated via result from random().
 
 ### Classes
 * __VRURLConnectionChecker__ - checks if default site or specified URL is accessible with completion and error blocks.

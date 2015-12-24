@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "VRFoundationToolkit"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary          = "Extends NSFoundation with categories, macros & classes. Effective Obj-C developer's mini-toolkit)"
   s.description      = <<-DESC
                        Extends NSFoundation with categories, macros & classes.
@@ -17,22 +17,27 @@ Pod::Spec.new do |s|
                        ## Categories
                        * __NSArray+VRArgument__ - sequentially passes each element of array to provided selector of target object or class.
                        * __NSArray+VRCheckMembers__ - checks if all members of array are of specified class.
+                       * __NSArray+VRIndexes__ - returns indexes set of passed objects. 
                        * __NSBundle+VRDisplayName__ - obtains localized display name of bundle with fallback to non-nil string precompiler constant if name is not accessible.
                        * __NSDate+VRDurations__ - calculates how much days, hours, minutes between two dates. Returns end of day. Compare two dates by specified NSCalendarUnit units. Return NSDateComponents for specified NSCalendarUnit units. Returns default NSCalendar.
                        * __NSFileManager+VRDocumentsDirectory__ - quick access for Documents directory and Temporary directory paths. Random file names generation. etc.
                        * __NSMutableDictionary+VRExchangeKeys__ - exchanges keys in dictionary.
                        * __NSObject+VRPropertiesProcessing__ - process object properties with blocks. Hash, equality & encode/decode by properties for any object.
                        * __NSObject+VRProtocolConformation__ - checks if object/class responds to all selectors required by protocol. Useful as precondition check of object in delegate setter.
+                       * __RTProtocol+VRMethods__ - returns methods defined in protocol.
                        * __NSString+VRmd5__ - MD5 hash on string.
                        * __NSTimer+VRWithBlock__ - timer that executes block instead of selector.
+                       * __NSOperationQueue+VRNamedBlock__ - add named block operation to queue.
 
                        ## Macros
                        * __VREnumXXX__ - generates enums with utility functions. NSStringFromXXX returns enum constant by value. isValidXXX checks range of enum value.
                        * __VRLOGxxx__ - multilevel logging & assertion macros. Could be connected to preferable logging system. VRPRECONDITIONxxx macros to implement light design by contract.
                        * __VRKeyName__ - stringifyes expression to key for `-[NSCoder encodeObject:withKey:]`. Useful to make names via help of XCode autocompletion.
                        * __VRSingleton__ - return singleton.
-                       * __VROBJCTYPExxx__ - returns Objective-C type string representation of the passed variable (or type). VRIS_TYPE_EQUAL_TO_TYPE(V1, V2) compares Objective-C types of two passed values/types.                       
-                       
+                       * __VROBJCTYPExxx__ - returns Objective-C type string representation of the passed variable (or type). VRIS_TYPE_EQUAL_TO_TYPE(V1, V2) compares Objective-C types of two passed values/types.
+                       * __VRBundledName__ - returns NSString with reverse dns bundle name followed by passed NAME at the end of the string.
+                       * __VRRandom__ - returns random float value calculated via result from random().
+                                              
                        ## Classes
                        * __VRURLConnectionChecker__ - checks if default site or specified URL is accessible with completion and error blocks.
                        
@@ -54,9 +59,13 @@ Pod::Spec.new do |s|
   s.frameworks = 'Foundation'
   s.dependency 'libextobjc', '~> 0.4'
   s.dependency 'MAObjCRuntime'
-  
+
+  s.subspec 'RTProtocol+VRMethods' do |ss|
+    ss.source_files = 'VRFoundationToolkit/RTProtocol+VRMethods/*.{h,m}'
+  end    
   s.subspec 'LogAndPreconditionCheck' do |ss|
     ss.source_files = 'VRFoundationToolkit/LogAndPreconditionCheck/*.{h,m}'
+    ss.dependency 'VRFoundationToolkit/RTProtocol+VRMethods'
   end
   s.subspec 'PropertiesProcessing' do |ss|
     ss.source_files = 'VRFoundationToolkit/NSObject+VRPropertiesProcessing/*.{h,m}'
