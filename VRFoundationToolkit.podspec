@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "VRFoundationToolkit"
-  s.version          = "0.1.2"
+  s.version          = "0.1.3"
   s.summary          = "Extends NSFoundation with categories, macros & classes. Effective Obj-C developer's mini-toolkit)"
   s.description      = <<-DESC
                        Extends NSFoundation with categories, macros & classes.
