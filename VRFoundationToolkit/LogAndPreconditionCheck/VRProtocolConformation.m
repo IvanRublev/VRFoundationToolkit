@@ -7,7 +7,7 @@
 //
 
 #import "VRProtocolConformation.h"
-#import <VRLog.h>
+#import "VRLog.h"
 #import "RTProtocol+VRMethods.h"
 #import <MAObjCRuntime/RTMethod.h>
 

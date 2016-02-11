@@ -16,7 +16,7 @@
 #import <Foundation/Foundation.h>
 
 // Import Requirements
-#import <extobjc.h>
+#import <libextobjc/extobjc.h>
 
 // Routines
 #import "VRLog.h"

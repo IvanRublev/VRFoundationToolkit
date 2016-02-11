@@ -7,7 +7,7 @@
 //
 
 #import "RTProtocol+VRMethods.h"
-#import <RTMethod.h>
+#import <MAObjCRuntime/RTMethod.h>
 
 
 @implementation RTProtocol (VRMethods)

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015 Ivan Rublev http://ivanrublev.me. All rights reserved.
 //
 
-#import <RTProtocol.h>
+#import <MAObjCRuntime/RTProtocol.h>
 
 /**
  *  These allows to receive all class or instance required+optional protocol methods names. All methods from adopted protocols are recursively included except the NSObject protocol ones. Usefull to check if method belongs to protocol. Returned results are cached.

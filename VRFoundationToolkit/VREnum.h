@@ -9,7 +9,7 @@
 #ifndef VRFoundationToolkit_VREnum_h
 #define VRFoundationToolkit_VREnum_h
 
-#import <metamacros.h>
+#import <libextobjc/metamacros.h>
 
 /* VRENUM_TYPEDEF_AND_UTILS(tdeName, intType, const1, const2, ...)
  *
